@@ -82,7 +82,7 @@ const subscribeNewsletter = () => {
         <h3 class="text-h5 font-weight-medium mb-4">Categories</h3>
         <div class="d-flex flex-wrap ga-2">
           <VChip v-for="category in categories" :key="category" size="small" variant="tonal" class="cursor-pointer">
-            {{ category }}
+            {{ category.toUpperCase() }}
           </VChip>
         </div>
       </VCardText>

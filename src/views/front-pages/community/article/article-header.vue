@@ -33,16 +33,6 @@ defineProps({
 
       <!-- Article Meta -->
       <div class="d-flex align-center flex-wrap ga-4 mb-6">
-        <div class="d-flex align-center ga-3">
-          <VAvatar :image="article.author.avatar" size="40" />
-          <div>
-            <div class="text-body-1 font-weight-medium">{{ article.author.name }}</div>
-            <div class="text-caption text-medium-emphasis">{{ article.author.role }}</div>
-          </div>
-        </div>
-
-        <VDivider vertical />
-
         <div class="d-flex align-center ga-4 text-body-2 text-medium-emphasis">
           <div class="d-flex align-center ga-1">
             <VIcon icon="tabler-calendar" size="16" />

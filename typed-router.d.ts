@@ -22,7 +22,6 @@ declare module 'vue-router/auto-routes' {
     '$error': RouteRecordInfo<'$error', '/:error(.*)', { error: ParamValue<true> }, { error: ParamValue<false> }>,
     'articles': RouteRecordInfo<'articles', '/articles', Record<never, never>, Record<never, never>>,
     'articles-id': RouteRecordInfo<'articles-id', '/articles/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
-    'articles-indexx': RouteRecordInfo<'articles-indexx', '/articles/indexx', Record<never, never>, Record<never, never>>,
     'calendar': RouteRecordInfo<'calendar', '/calendar', Record<never, never>, Record<never, never>>,
     'forms': RouteRecordInfo<'forms', '/forms', Record<never, never>, Record<never, never>>,
     'indexx': RouteRecordInfo<'indexx', '/indexx', Record<never, never>, Record<never, never>>,
