@@ -1,5 +1,5 @@
 <script setup>
-import { supabase } from '@/libs/supabase'
+import { supabase } from '@/libs/supabase'  
 import { onMounted, ref } from 'vue'
 
 // WhatsApp number from Supabase

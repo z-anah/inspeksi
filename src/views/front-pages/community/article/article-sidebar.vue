@@ -1,27 +1,53 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   article: {
     type: Object,
     required: true
   }
 })
 
-const tableOfContents = [
-  { title: 'The Digital Transformation', anchor: '#digital-transformation' },
-  { title: 'Key Benefits', anchor: '#key-benefits' },
-  { title: 'Implementation Strategies', anchor: '#implementation-strategies' }
-]
+const tableOfContents = computed(() => {
+  if (!props.article.content) return []
+  
+  // Create a temporary DOM parser to extract headings
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(props.article.content, 'text/html')
+  const headings = doc.querySelectorAll('h1, h2, h3')
+  
+  return Array.from(headings).map((heading, index) => {
+    const text = heading.textContent
+    const level = parseInt(heading.tagName.charAt(1))
+    const anchor = `#${text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`
+    
+    return {
+      title: text,
+      anchor,
+      level,
+      indent: level > 1 ? (level - 1) * 16 : 0
+    }
+  })
+})
 </script>
 
 <template>
   <div class="d-flex flex-column ga-6 position-sticky" style="top: 2rem;">
     <!-- Table of Contents -->
-    <VCard>
+    <VCard v-if="tableOfContents.length > 0">
       <VCardText class="pa-6">
         <h4 class="text-h6 font-weight-medium mb-4">Table of Contents</h4>
         <VList class="pa-0">
-          <VListItem v-for="item in tableOfContents" :key="item.anchor" :href="item.anchor" class="pa-2 text-body-2">
-            {{ item.title }}
+          <VListItem 
+            v-for="item in tableOfContents" 
+            :key="item.anchor" 
+            :href="item.anchor" 
+            class="pa-2 text-body-2"
+            :style="{ paddingLeft: `${16 + item.indent}px` }"
+          >
+            <span :class="item.level === 1 ? 'font-weight-medium' : ''">
+              {{ item.title }}
+            </span>
           </VListItem>
         </VList>
       </VCardText>
@@ -43,10 +69,6 @@ const tableOfContents = [
           <div class="d-flex justify-space-between">
             <span class="text-body-2">Shares</span>
             <span class="font-weight-medium">{{ article.shares }}</span>
-          </div>
-          <div class="d-flex justify-space-between">
-            <span class="text-body-2">Comments</span>
-            <span class="font-weight-medium">{{ article.comments }}</span>
           </div>
         </div>
       </VCardText>
