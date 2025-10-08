@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   recentArticles: {
@@ -41,6 +42,8 @@ const emit = defineEmits(['update:searchQuery'])
 const localSearchQuery = ref(props.searchQuery)
 const newsletterEmail = ref('')
 
+const router = useRouter()
+
 const updateSearch = (value) => {
   localSearchQuery.value = value
   emit('update:searchQuery', value)
@@ -49,6 +52,10 @@ const updateSearch = (value) => {
 const subscribeNewsletter = () => {
   console.log('Newsletter subscription:', newsletterEmail.value)
   newsletterEmail.value = ''
+}
+
+const navigateToArticle = (articleId) => {
+  router.push(`/articles/${articleId}`)
 }
 </script>
 
@@ -66,13 +73,17 @@ const subscribeNewsletter = () => {
     <VCard>
       <VCardText class="pa-6">
         <h3 class="text-h5 font-weight-medium mb-4">Recent Articles</h3>
-        <VList class="pa-0">
-          <VListItem v-for="recent in recentArticles" :key="recent.id" class="pa-0">
-            <VListItemTitle>
-              <a href="#" class="text-primary text-decoration-none">{{ recent.title }}</a>
-            </VListItemTitle>
-          </VListItem>
-        </VList>
+        <div class="d-flex flex-column gap-3">
+          <div 
+            v-for="article in recentArticles" 
+            :key="article.id"
+            class="cursor-pointer pa-2 rounded hover-bg"
+            @click="navigateToArticle(article.id)"
+          >
+            <h4 class="text-body-1 font-weight-medium mb-1">{{ article.title }}</h4>
+            <p class="text-caption text-medium-emphasis">{{ article.date }}</p>
+          </div>
+        </div>
       </VCardText>
     </VCard>
 
@@ -89,3 +100,13 @@ const subscribeNewsletter = () => {
     </VCard>
   </div>
 </template>
+
+<style lang="scss">
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover-bg:hover {
+  background-color: rgba(var(--v-theme-on-surface), 0.04);
+}
+</style>

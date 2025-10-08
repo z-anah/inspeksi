@@ -29,6 +29,20 @@ const tableOfContents = computed(() => {
     }
   })
 })
+
+const scrollToHeading = (anchor) => {
+  const element = document.querySelector(anchor)
+  if (element) {
+    const navbarHeight = 80 // Adjust this value based on your navbar height
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset / 1.03
+    const offsetPosition = elementPosition - navbarHeight
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
+  }
+}
 </script>
 
 <template>
@@ -41,11 +55,11 @@ const tableOfContents = computed(() => {
           <VListItem 
             v-for="item in tableOfContents" 
             :key="item.anchor" 
-            :href="item.anchor" 
-            class="pa-2 text-body-2"
+            class="pa-2 text-body-2 cursor-pointer"
             :style="{ paddingLeft: `${16 + item.indent}px` }"
+            @click="scrollToHeading(item.anchor)"
           >
-            <span :class="item.level === 1 ? 'font-weight-medium' : ''">
+            <span :class="item.level === 1 ? 'font-weight-medium' : ''" class="text-primary">
               {{ item.title }}
             </span>
           </VListItem>
@@ -70,24 +84,6 @@ const tableOfContents = computed(() => {
             <span class="text-body-2">Shares</span>
             <span class="font-weight-medium">{{ article.shares }}</span>
           </div>
-        </div>
-      </VCardText>
-    </VCard>
-
-    <!-- Quick Actions -->
-    <VCard>
-      <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Quick Actions</h4>
-        <div class="d-flex flex-column ga-2">
-          <VBtn variant="outlined" prepend-icon="tabler-bookmark">
-            Bookmark
-          </VBtn>
-          <VBtn variant="outlined" prepend-icon="tabler-printer">
-            Print
-          </VBtn>
-          <VBtn variant="outlined" prepend-icon="tabler-flag">
-            Report
-          </VBtn>
         </div>
       </VCardText>
     </VCard>

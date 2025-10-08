@@ -3,13 +3,22 @@ defineProps({
   products: {
     type: Array,
     required: true
+  },
+  cart: {
+    type: Array,
+    default: () => []
   }
 })
+
+const emit = defineEmits(['add-to-cart'])
+
+const handleAddToCart = (product) => {
+  emit('add-to-cart', product, 1)
+}
 </script>
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Product Grid</h2>
     <VRow>
       <VCol v-for="product in products" :key="'grid-' + product.id" cols="12" sm="6" md="4">
         <VCard class="h-100">
@@ -36,18 +45,23 @@ defineProps({
 
             <div class="d-flex align-center justify-space-between mb-3">
               <div>
-                <span class="text-h6 text-primary">${{ product.price }}</span>
+                <span class="text-h6 text-primary">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</span>
                 <span v-if="product.originalPrice > product.price"
                   class="text-decoration-line-through text-medium-emphasis ms-2">
-                  ${{ product.originalPrice }}
+                  Rp {{ new Intl.NumberFormat('id-ID').format(product.originalPrice) }}
                 </span>
               </div>
-              <VChip size="x-small" variant="tonal">{{ product.category }}</VChip>
             </div>
           </VCardText>
 
           <VCardActions>
-            <VBtn color="primary" variant="flat" block :disabled="!product.inStock">
+            <VBtn 
+              color="primary" 
+              variant="flat" 
+              block 
+              :disabled="!product.inStock"
+              @click="handleAddToCart(product)"
+            >
               {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
             </VBtn>
           </VCardActions>

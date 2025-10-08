@@ -115,6 +115,9 @@ const startDateTimePickerConfig = computed(() => ({
 const dialogModelValueUpdate = val => {
   emit('update:isDrawerOpen', val)
 }
+
+// 👉 Disable all form fields
+const isDisabled = computed(() => true)
 </script>
 
 <template>
@@ -141,37 +144,28 @@ const dialogModelValueUpdate = val => {
               <!-- 👉 Title -->
               <VCol cols="12">
                 <AppTextField id="event-title" v-model="event.title" label="Title" placeholder="Event title"
-                  :rules="[requiredValidator]" />
+                  :rules="[requiredValidator]" :disabled="isDisabled" />
               </VCol>
 
               <!-- 👉 Event Date -->
               <VCol cols="12">
                 <AppDateTimePicker id="event-date" :key="JSON.stringify(startDateTimePickerConfig)"
                   v-model="event.start" :rules="[requiredValidator]" label="Event Date" placeholder="Select Date"
-                  :config="startDateTimePickerConfig" />
+                  :config="startDateTimePickerConfig" :disabled="isDisabled" />
               </VCol>
 
               <!-- 👉 Location -->
               <VCol cols="12">
                 <AppTextField id="event-location" v-model="event.extendedProps.location" label="Location"
-                  placeholder="Event location" />
+                  placeholder="Event location" :disabled="isDisabled" />
               </VCol>
 
               <!-- 👉 Map URL -->
               <VCol cols="12">
                 <AppTextField id="event-map-url" v-model="event.extendedProps.map_url" label="Map URL"
-                  placeholder="https://maps.google.com/..." type="url" />
+                  placeholder="https://maps.google.com/..." type="url" :disabled="isDisabled" />
               </VCol>
 
-              <!-- 👉 Form buttons -->
-              <VCol cols="12">
-                <VBtn type="submit" class="me-3">
-                  Submit
-                </VBtn>
-                <VBtn variant="outlined" color="secondary" @click="onCancel">
-                  Cancel
-                </VBtn>
-              </VCol>
             </VRow>
           </VForm>
           <!-- !SECTION -->

@@ -12,8 +12,7 @@ defineProps({
     <!-- Breadcrumbs -->
     <VBreadcrumbs :items="[
       { title: 'Home', to: '/' },
-      { title: 'Community', to: '/community' },
-      { title: 'Articles', to: '/community/articles' },
+      { title: 'Articles', to: '/articles' },
       { title: article.title, disabled: true }
     ]" class="pa-0 mb-4" />
 
@@ -53,11 +52,16 @@ defineProps({
       <VImg :src="article.featuredImage" :alt="article.title" height="400" class="rounded" cover />
 
       <!-- Tags -->
-      <div class="d-flex flex-wrap ga-2 mt-4">
+      <div class="d-flex flex-wrap ga-2 mt-4 mb-4">
         <VChip v-for="tag in article.tags" :key="tag" size="small" variant="outlined">
           #{{ tag }}
         </VChip>
       </div>
+
+      <!-- Article Excerpt -->
+      <p v-if="article.excerpt" class="text-body-1 text-medium-emphasis mb-4">
+        {{ article.excerpt }}
+      </p>
     </div>
   </section>
 </template>

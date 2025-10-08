@@ -1,9 +1,26 @@
 <script setup>
+import { onMounted, nextTick } from 'vue'
+
 defineProps({
   content: {
     type: String,
     required: true
   }
+})
+
+const addHeadingIds = () => {
+  nextTick(() => {
+    const headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3')
+    headings.forEach((heading) => {
+      const text = heading.textContent
+      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+      heading.id = id
+    })
+  })
+}
+
+onMounted(() => {
+  addHeadingIds()
 })
 </script>
 
@@ -11,7 +28,7 @@ defineProps({
   <section>
     <VCard>
       <VCardText class="pa-8">
-        <div class="article-content text-body-1" v-html="content" />
+        <div class="article-content text-body-1" v-html="content" @vue:updated="addHeadingIds" />
       </VCardText>
     </VCard>
   </section>

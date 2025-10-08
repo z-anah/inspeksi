@@ -25,32 +25,29 @@ const fetchArticles = async () => {
   loading.value = true
   const { data, error: fetchError } = await supabase
     .from('articles')
-    .select('id, type, title, content, published_at, image_url')
+    .select('id, type, title, content, excerpt, published_at, image_url, views, likes, shares')
     .order('published_at', { ascending: false })
 
   if (fetchError) {
     error.value = fetchError.message
   } else if (data) {
     articles.value = data.map((article, index) => {
-      const excerpt = Array.isArray(article.content) && article.content[0] 
-        ? article.content[0].slice(0, 120) + (article.content[0].length > 120 ? '...' : '')
-        : 'No content available'
-      
       return {
         id: article.id,
         title: article.title,
         author: article.author || 'Anonymous',
         authorRole: article.author_role || 'Contributor',
-        date: new Date(article.published_at).toLocaleDateString('en-US', { 
-          year: 'numeric', month: 'short', day: 'numeric' 
+        date: new Date(article.published_at).toLocaleDateString('en-US', {
+          year: 'numeric', month: 'short', day: 'numeric'
         }),
-        readingTime: `${Math.max(1, Math.ceil(excerpt.length / 200))} min read`,
-        excerpt,
+        readingTime: `${Math.max(1, Math.ceil((article.excerpt || '').length / 200))} min read`,
+        excerpt: article.excerpt || 'No excerpt available',
         image: article.image_url || 'https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=250&fit=crop',
         category: article.type || 'Rilis',
         tags: ['community', 'news', 'updates'],
-        views: Math.floor(Math.random() * 300) + 50,
-        likes: Math.floor(Math.random() * 50) + 5,
+        views: article.views || 0,
+        likes: article.likes || 0,
+        shares: article.shares || 0,
         featured: index < 3
       }
     })
@@ -80,8 +77,8 @@ const fetchEvents = async () => {
     events.value = data.map(event => ({
       id: event.id,
       name: event.name,
-      date: new Date(event.event_date).toLocaleDateString('en-US', { 
-        year: 'numeric', month: 'short', day: 'numeric' 
+      date: new Date(event.event_date).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric'
       }),
       time: event.event_time || '6:00 PM',
       location: event.location || 'Community Center'
@@ -132,9 +129,9 @@ const filteredArticles = computed(() => {
   if (!searchQuery.value.trim()) {
     return articles.value
   }
-  
+
   const query = searchQuery.value.toLowerCase()
-  return articles.value.filter(article => 
+  return articles.value.filter(article =>
     article.title.toLowerCase().includes(query) ||
     article.excerpt.toLowerCase().includes(query) ||
     article.category.toLowerCase().includes(query) ||
@@ -146,7 +143,7 @@ const filteredCategories = computed(() => {
   if (!searchQuery.value.trim()) {
     return categories.value
   }
-  
+
   const articleCategories = filteredArticles.value.map(article => article.category)
   return [...new Set(articleCategories)]
 })
@@ -156,7 +153,7 @@ watch(searchQuery, (newQuery) => {
   if (searchTimeout.value) {
     clearTimeout(searchTimeout.value)
   }
-  
+
   if (newQuery.trim()) {
     searchLoading.value = true
     searchTimeout.value = setTimeout(() => {
@@ -201,32 +198,21 @@ definePage({
             <!-- Search Results Info -->
             <div v-if="searchQuery.trim() && !searchLoading" class="mb-2">
               <VChip size="small" color="primary" variant="tonal">
-                {{ filteredArticles.length }} result{{ filteredArticles.length !== 1 ? 's' : '' }} 
+                {{ filteredArticles.length }} result{{ filteredArticles.length !== 1 ? 's' : '' }}
                 for "{{ searchQuery }}"
               </VChip>
             </div>
 
-            <CategoryTabbedLayout2 
-              :articles="filteredArticles" 
-              :categories="filteredCategories"
-              :search-active="!!searchQuery.trim()"
-              :search-loading="searchLoading"
-            />
+            <CategoryTabbedLayout2 :articles="filteredArticles" :categories="filteredCategories"
+              :search-active="!!searchQuery.trim()" :search-loading="searchLoading" />
           </div>
         </VCol>
 
         <!-- Sidebar -->
         <VCol cols="12" lg="4">
-          <ArticlesSidebar 
-            :recent-articles="recentArticles" 
-            :categories="categories" 
-            :events="events"
-            :spotlight="spotlight" 
-            :testimonials="testimonials" 
-            :partners="partners" 
-            :faqs="faqs"
-            v-model:search-query="searchQuery" 
-          />
+          <ArticlesSidebar :recent-articles="recentArticles" :categories="categories" :events="events"
+            :spotlight="spotlight" :testimonials="testimonials" :partners="partners" :faqs="faqs"
+            v-model:search-query="searchQuery" />
         </VCol>
       </VRow>
     </VContainer>

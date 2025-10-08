@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   articles: {
@@ -21,6 +22,7 @@ const props = defineProps({
 })
 
 const activeTab = ref(0)
+const router = useRouter()
 
 const filteredArticlesByCategory = computed(() => {
   if (props.searchActive) {
@@ -35,6 +37,10 @@ const filteredArticlesByCategory = computed(() => {
     )
   }
 })
+
+const navigateToArticle = (articleId) => {
+  router.push(`/articles/${articleId}`)
+}
 </script>
 
 <template>
@@ -52,7 +58,13 @@ const filteredArticlesByCategory = computed(() => {
         </div>
         
         <div v-else class="d-flex flex-column ga-4">
-          <VCard v-for="article in articles" :key="'tab-all-' + article.id">
+          <VCard 
+            v-for="article in articles" 
+            :key="'tab-all-' + article.id"
+            class="cursor-pointer"
+            hover
+            @click="navigateToArticle(article.id)"
+          >
             <VCardText class="d-flex ga-4">
               <div style="width: 128px; height: 96px;">
                 <VImg :src="article.image" :alt="article.title" width="128" height="96" class="flex-shrink-0 rounded"
@@ -80,7 +92,13 @@ const filteredArticlesByCategory = computed(() => {
         </div>
         
         <div v-else class="d-flex flex-column ga-4">
-          <VCard v-for="article in filteredArticlesByCategory[index]" :key="'tab-' + category + '-' + article.id">
+          <VCard 
+            v-for="article in filteredArticlesByCategory[index]" 
+            :key="'tab-' + category + '-' + article.id"
+            class="cursor-pointer"
+            hover
+            @click="navigateToArticle(article.id)"
+          >
             <VCardText class="d-flex ga-4">
               <div style="width: 128px; height: 96px;">
                 <VImg :src="article.image" :alt="article.title" width="128" height="96" class="flex-shrink-0 rounded"
@@ -106,3 +124,9 @@ const filteredArticlesByCategory = computed(() => {
     </VTabsWindow>
   </section>
 </template>
+
+<style lang="scss">
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

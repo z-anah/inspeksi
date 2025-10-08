@@ -26,7 +26,7 @@ const fetchArticle = async (id) => {
   try {
     const { data, error: fetchError } = await supabase
       .from('articles')
-      .select(`*`)
+      .select('*')
       .eq('id', id)
       .single()
 
@@ -36,6 +36,7 @@ const fetchArticle = async (id) => {
       id: data.id,
       title: data.title,
       subtitle: data.subtitle || '',
+      excerpt: data.excerpt || '',
       author: {
         name: data.author_name || 'Anonymous',
         role: 'Contributor',
@@ -49,15 +50,15 @@ const fetchArticle = async (id) => {
       date: new Date(data.published_at).toLocaleDateString('en-US', {
         year: 'numeric', month: 'long', day: 'numeric'
       }),
-      readingTime: `${Math.max(1, Math.ceil((Array.isArray(data.content) ? data.content.join(' ').length : 0) / 1000))} min read`,
+      readingTime: `${Math.max(1, Math.ceil((data.excerpt || '').length / 200))} min read`,
       category: data.type || 'General',
       tags: ['community', 'news'],
       featuredImage: data.image_url || 'https://images.unsplash.com/photo-1560472355-536de3962603?w=800&h=400&fit=crop',
       content: Array.isArray(data.content) ? data.content.map(p => `<p>${p}</p>`).join('') : '<p>Content not available</p>',
       views: data.views || 0,
       likes: data.likes || 0,
-      shares: Math.floor(Math.random() * 50),
-      comments: Math.floor(Math.random() * 30)
+      shares: data.shares || 0,
+      comments: Math.floor(Math.random() * 30) // Keep random for now since no comments table
     }
 
     // Update view count
@@ -83,9 +84,7 @@ const fetchRelatedArticles = async (currentId, category) => {
     relatedArticles.value = data.map(article => ({
       id: article.id,
       title: article.title,
-      excerpt: Array.isArray(article.content) && article.content[0] 
-        ? article.content[0].slice(0, 100) + '...'
-        : 'Read more about this topic...',
+      excerpt: article.excerpt || 'Read more about this topic...',
       image: article.image_url || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop',
       date: new Date(article.published_at).toLocaleDateString('en-US', {
         year: 'numeric', month: 'long', day: 'numeric'
@@ -139,6 +138,20 @@ const fetchComments = async (articleId) => {
   ]
 }
 
+const updateArticleStats = (newStats) => {
+  if (currentArticle.value) {
+    if (newStats.likes !== undefined) {
+      currentArticle.value.likes = newStats.likes
+    }
+    if (newStats.shares !== undefined) {
+      currentArticle.value.shares = newStats.shares
+    }
+    if (newStats.views !== undefined) {
+      currentArticle.value.views = newStats.views
+    }
+  }
+}
+
 onMounted(async () => {
   const articleId = route.params.id
   loading.value = true
@@ -183,7 +196,7 @@ definePage({
             <div class="d-flex flex-column ga-8">
               <ArticleHeader :article="currentArticle" />
               <ArticleContent :content="currentArticle.content" />
-              <SharingSection :article="currentArticle" />
+              <SharingSection :article="currentArticle" @update-stats="updateArticleStats" />
               <ArticleNavigation :navigation="articleNavigation" />
             </div>
           </VCol>

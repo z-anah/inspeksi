@@ -4,6 +4,8 @@ import { themeConfig } from '@themeConfig'
 import { useWindowScroll } from '@vueuse/core'
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import { useDisplay } from 'vuetify'
+import BasketDropdown from './community/components/BasketDropdown.vue'
+import { useCartStore } from '@/stores/cart'
 
 const props = defineProps({ activeId: String })
 
@@ -12,6 +14,9 @@ const { y } = useWindowScroll()
 const route = useRoute()
 const router = useRouter()
 const sidebar = ref(false)
+
+// Initialize cart store to ensure it's available
+const cartStore = useCartStore()
 
 watch(() => display, () => {
   return display.mdAndUp ? sidebar.value = false : sidebar.value
@@ -147,7 +152,7 @@ const isPageActive = computed(() => menuItems.some(item => item.navItems.some(li
 
         <VSpacer />
 
-
+        <BasketDropdown />
       </VAppBar>
     </div>
   </div>

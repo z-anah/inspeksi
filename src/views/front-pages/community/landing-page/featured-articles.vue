@@ -1,6 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { supabase } from '@/libs/supabase'
+
+const router = useRouter()
 
 definePage({
   meta: {
@@ -14,27 +17,27 @@ const articles = ref([])
 const fetchArticles = async () => {
   const { data, error } = await supabase
     .from('articles')
-    .select('title, content, published_at, image_url, id')
+    .select('title, excerpt, published_at, image_url, id')
     .order('published_at', { ascending: false })
     .limit(2)
 
   if (!error && data) {
-    articles.value = data.map(article => {
-      let summary = article.content[0]
-      summary = article.content[0].slice(0, 150) + (article.content[0].length > 150 ? '...' : '')
-      return {
-        title: article.title,
-        description: summary,
-        image: article.image_url || 'https://placehold.co/400x200?text=Article+Image',
-        id: article.id,
-      }
-    })
+    articles.value = data.map(article => ({
+      title: article.title,
+      description: article.excerpt || 'No excerpt available',
+      image: article.image_url || 'https://placehold.co/400x200?text=Article+Image',
+      id: article.id,
+    }))
   }
 }
 
 onMounted(() => {
   fetchArticles()
 })
+
+const navigateToArticle = (articleId) => {
+  router.push(`/articles/${articleId}`)
+}
 </script>
 
 <template>
@@ -51,10 +54,16 @@ onMounted(() => {
           <p class="text-body-1 text-center mb-2">
             Explore resources and real stories to empower your anti-corruption journey.
           </p>
-          <VBtn>Read All Articles</VBtn>
+          <VBtn to="/articles">Read All Articles</VBtn>
         </VCol>
         <VCol v-for="(article, idx) in articles" :key="article.id || idx" cols="12" md="4" sm="6">
-          <VCard flat border>
+          <VCard 
+            flat 
+            border 
+            class="cursor-pointer h-100"
+            hover
+            @click="navigateToArticle(article.id)"
+          >
             <div class="px-2 pt-2">
               <VImg :src="article.image" :alt="article.title" class="w-100 rounded" height="200" cover />
             </div>
@@ -86,5 +95,14 @@ onMounted(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
 </style>
