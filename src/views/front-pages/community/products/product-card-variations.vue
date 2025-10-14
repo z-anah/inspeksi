@@ -9,12 +9,12 @@ defineProps({
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Product Card Variations</h2>
+    <h2 class="text-h4 font-weight-medium mb-4">Variasi Kartu Produk</h2>
 
     <VRow>
       <!-- Compact Card -->
       <VCol cols="12" md="3">
-        <h4 class="text-h6 font-weight-medium mb-3">Compact Cards</h4>
+        <h4 class="text-h6 font-weight-medium mb-3">Kartu Kompak</h4>
         <div class="d-flex flex-column ga-3">
           <VCard v-for="product in products.slice(0, 2)" :key="'compact-' + product.id" variant="outlined">
             <VCardText class="pa-3">
@@ -22,7 +22,7 @@ defineProps({
                 <VImg :src="product.image" :alt="product.name" width="50" height="50" class="rounded" cover />
                 <div class="flex-grow-1">
                   <div class="text-body-2 font-weight-medium">{{ product.name }}</div>
-                  <div class="text-primary font-weight-bold">${{ product.price }}</div>
+                  <div class="text-primary font-weight-bold">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</div>
                 </div>
               </div>
             </VCardText>
@@ -32,7 +32,7 @@ defineProps({
 
       <!-- Detailed Card -->
       <VCol cols="12" md="6">
-        <h4 class="text-h6 font-weight-medium mb-3">Detailed Card</h4>
+        <h4 class="text-h6 font-weight-medium mb-3">Kartu Detail</h4>
         <VCard v-if="products[0]">
           <VImg :src="products[0].image" :alt="products[0].name" height="200" cover />
 
@@ -46,18 +46,18 @@ defineProps({
 
             <div class="d-flex align-center mb-3">
               <VRating :model-value="products[0].rating" readonly size="small" color="warning" class="me-2" />
-              <span class="text-caption">({{ products[0].reviews }} reviews)</span>
+              <span class="text-caption">({{ products[0].reviews }} ulasan)</span>
             </div>
 
             <div class="d-flex align-center justify-space-between">
               <div>
-                <span class="text-h6 text-primary">${{ products[0].price }}</span>
+                <span class="text-h6 text-primary">Rp {{ new Intl.NumberFormat('id-ID').format(products[0].price) }}</span>
                 <span v-if="products[0].originalPrice > products[0].price"
                   class="text-decoration-line-through text-medium-emphasis ms-2">
-                  ${{ products[0].originalPrice }}
+                  Rp {{ new Intl.NumberFormat('id-ID').format(products[0].originalPrice) }}
                 </span>
               </div>
-              <VBtn color="primary" variant="flat">Add to Cart</VBtn>
+              <VBtn color="primary" variant="flat">Tambah ke Keranjang</VBtn>
             </div>
           </VCardText>
         </VCard>
@@ -65,13 +65,13 @@ defineProps({
 
       <!-- Minimal Card -->
       <VCol cols="12" md="3">
-        <h4 class="text-h6 font-weight-medium mb-3">Minimal Cards</h4>
+        <h4 class="text-h6 font-weight-medium mb-3">Kartu Minimal</h4>
         <div class="d-flex flex-column ga-3">
           <VCard v-for="product in products.slice(2, 4)" :key="'minimal-' + product.id" variant="text"
             class="text-center">
             <VImg :src="product.image" :alt="product.name" height="120" class="rounded mb-2" cover />
             <div class="text-body-2 font-weight-medium mb-1">{{ product.name }}</div>
-            <div class="text-primary font-weight-bold">${{ product.price }}</div>
+            <div class="text-primary font-weight-bold">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</div>
           </VCard>
         </div>
       </VCol>

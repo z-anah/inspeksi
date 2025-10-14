@@ -8,60 +8,60 @@ const annualMonthlyPlanPriceToggler = ref(true)
 
 const pricingPlans = [
   {
-    title: 'Basic',
+    title: 'Dasar',
     image: paperPlane,
     monthlyPrice: 19,
     yearlyPrice: 168,
     features: [
-      'Timeline',
-      'Basic search',
-      'Live chat widget',
-      'Email marketing',
-      'Custom Forms',
-      'Traffic analytics',
-      'Basic Support',
+      'Linimasa',
+      'Pencarian dasar',
+      'Widget chat langsung',
+      'Pemasaran email',
+      'Formulir kustom',
+      'Analitik lalu lintas',
+      'Dukungan dasar',
     ],
-    supportType: 'Basic',
-    supportMedium: 'Only Email',
-    respondTime: 'AVG. Time: 24h',
+    supportType: 'Dasar',
+    supportMedium: 'Hanya Email',
+    respondTime: 'Rata-rata: 24 jam',
     current: false,
   },
   {
-    title: 'Favourite',
+    title: 'Favorit',
     image: plane,
     monthlyPrice: 29,
     yearlyPrice: 264,
     features: [
-      'Everything in basic',
-      'Timeline with database',
-      'Advanced search',
-      'Marketing automation',
-      'Advanced chatbot',
-      'Campaign management',
-      'Collaboration tools',
+      'Semua fitur dasar',
+      'Linimasa dengan database',
+      'Pencarian lanjutan',
+      'Otomasi pemasaran',
+      'Chatbot lanjutan',
+      'Manajemen kampanye',
+      'Alat kolaborasi',
     ],
-    supportType: 'Standard',
+    supportType: 'Standar',
     supportMedium: 'Email & Chat',
-    respondTime: 'AVG. Time: 6h',
+    respondTime: 'Rata-rata: 6 jam',
     current: true,
   },
   {
-    title: 'Standard',
+    title: 'Standar',
     image: shuttleRocket,
     monthlyPrice: 49,
     yearlyPrice: 444,
     features: [
-      'Campaign management',
-      'Timeline with database',
-      'Fuzzy search',
-      'A/B testing sanbox',
-      'Custom permissions',
-      'Social media automation',
-      'Sales automation tools',
+      'Manajemen kampanye',
+      'Linimasa dengan database',
+      'Pencarian fuzzy',
+      'Sandbox A/B testing',
+      'Izin kustom',
+      'Otomasi media sosial',
+      'Alat otomasi penjualan',
     ],
-    supportType: 'Exclusive',
+    supportType: 'Eksklusif',
     supportMedium: 'Email, Chat & Google Meet',
-    respondTime: 'Live Support',
+    respondTime: 'Dukungan Langsung',
     current: false,
   },
 ]
@@ -79,22 +79,22 @@ const pricingPlans = [
             class="mb-4"
             size="small"
           >
-            Pricing Plans
+            Paket Harga
           </VChip>
           <h4 class="d-flex align-center text-h4 mb-1 flex-wrap justify-center">
             <div class="position-relative me-2">
               <div class="section-title">
-                Tailored design plans
+                Paket desain yang disesuaikan
               </div>
             </div>
-            designed for you
+            dirancang untuk Anda
           </h4>
           <div class="text-center text-body-1">
             <p class="mb-0">
-              All plans include 40+ advanced tools and features to boost your product.
+              Semua paket mencakup 40+ alat dan fitur canggih untuk meningkatkan produk Anda.
             </p>
             <p class="mb-0">
-              Choose the best plan to fit your needs.
+              Pilih paket terbaik yang sesuai dengan kebutuhan Anda.
             </p>
           </div>
         </div>
@@ -104,7 +104,7 @@ const pricingPlans = [
             for="pricing-plan-toggle"
             class="me-3"
           >
-            Pay Monthly
+            Bayar Bulanan
           </VLabel>
           <div class="position-relative">
             <VSwitch
@@ -113,7 +113,7 @@ const pricingPlans = [
             >
               <template #label>
                 <div class="text-body-1">
-                  Pay Annually
+                  Bayar Tahunan
                 </div>
               </template>
             </VSwitch>
@@ -125,7 +125,7 @@ const pricingPlans = [
                 height="42"
               />
               <div class="text-no-wrap text-body-1 font-weight-medium">
-                Save 25%
+                Hemat 25%
               </div>
             </div>
           </div>
@@ -192,7 +192,7 @@ const pricingPlans = [
                   class="mt-8"
                   :to="{ name: 'front-pages-payment' }"
                 >
-                  Get Started
+                  Mulai Sekarang
                 </VBtn>
               </VCardText>
             </VCard>

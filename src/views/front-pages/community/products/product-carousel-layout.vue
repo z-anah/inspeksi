@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Product Carousel</h2>
+    <h2 class="text-h4 font-weight-medium mb-4">Korsel Produk</h2>
 
     <VCarousel height="350" cycle :show-arrows="true" hide-delimiter-background delimiter-icon="tabler-minus">
       <VCarouselItem v-for="product in products" :key="'carousel-' + product.id">
@@ -21,7 +21,7 @@ defineProps({
             <VCol cols="12" md="6">
               <VCardText class="pa-8 d-flex flex-column justify-center h-100">
                 <VChip v-if="product.featured" color="primary" size="small" class="mb-4 align-self-start">
-                  Featured
+                  Unggulan
                 </VChip>
 
                 <h3 class="text-h4 font-weight-bold mb-4">{{ product.name }}</h3>
@@ -29,22 +29,22 @@ defineProps({
 
                 <div class="d-flex align-center mb-4">
                   <VRating :model-value="product.rating" readonly size="small" color="warning" class="me-2" />
-                  <span class="text-body-2">({{ product.reviews }} reviews)</span>
+                  <span class="text-body-2">({{ product.reviews }} ulasan)</span>
                 </div>
 
                 <div class="d-flex align-center justify-space-between mb-6">
                   <div>
-                    <span class="text-h4 text-primary">${{ product.price }}</span>
+                    <span class="text-h4 text-primary">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</span>
                     <span v-if="product.originalPrice > product.price"
                       class="text-decoration-line-through text-medium-emphasis ms-2">
-                      ${{ product.originalPrice }}
+                      Rp {{ new Intl.NumberFormat('id-ID').format(product.originalPrice) }}
                     </span>
                   </div>
                   <VChip variant="tonal">{{ product.category }}</VChip>
                 </div>
 
                 <VBtn color="primary" variant="flat" size="large" :disabled="!product.inStock" block>
-                  {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
+                  {{ product.inStock ? 'Tambah ke Keranjang' : 'Stok Habis' }}
                 </VBtn>
               </VCardText>
             </VCol>

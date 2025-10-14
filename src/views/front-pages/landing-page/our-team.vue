@@ -28,48 +28,50 @@ onMounted(fetchTeam)
 </script>
 
 <template>
-  <VContainer id="team">
-    <div class="our-team pa-">
-      <div class="headers d-flex justify-center flex-column align-center">
-        <VChip label color="primary" class="mb-4" size="small">
-          Tim Hebat Kami
-        </VChip>
+  <div class="bg-surface">
+    <VContainer id="team">
+      <div class="our-team pa-">
+        <div class="headers d-flex justify-center flex-column align-center">
+          <VChip label color="primary" class="mb-4" size="small">
+            Tim Hebat Kami
+          </VChip>
 
-        <h4 class="d-flex align-center text-h4 mb-1 flex-wrap justify-center">
-          <div class="position-relative me-2">
-            <div class="section-title">
-              Didukung
+          <h4 class="d-flex align-center text-h4 mb-1 flex-wrap justify-center">
+            <div class="position-relative me-2">
+              <div class="section-title">
+                Didukung
+              </div>
             </div>
-          </div>
-          oleh
-        </h4>
+            oleh tim terbaik
+          </h4>
 
-        <p class="text-center text-body-1 mb-0">
-          Kenali siapa saja di balik.
-        </p>
+          <p class="text-center text-body-1 mb-0">
+            Kenali siapa saja di balik gerakan anti-korupsi ini.
+          </p>
+        </div>
+
+        <VRow>
+          <VCol v-for="(data, index) in teamData" :key="index" cols="12" lg="3" sm="6">
+            <VCard flat min-width="267" class="position-relative overflow-visible team-card mb-lg-0 mb-12 mt-4">
+              <div
+                :style="{ maxHeight: '185px', minHeight: '185px', borderRadius: '90px 20px 0 0', backgroundColor: data.backgroundColor, border: `1px solid ${data.borderColor}`, borderBottom: 'none' }">
+                <VImg :src="data.image_url" height="240" class="team-image" />
+              </div>
+              <VCardText class="text-center pa-4"
+                :style="{ border: `1px solid ${data.borderColor}`, borderBlockStart: 'none', borderRadius: '0 0 6px 6px', boxSizing: 'border-box' }">
+                <h5 class="text-h5">
+                  {{ data.name }}
+                </h5>
+                <p class="text-body-1 text-disabled mb-0">
+                  {{ data.position }}
+                </p>
+              </VCardText>
+            </VCard>
+          </VCol>
+        </VRow>
       </div>
-
-      <VRow>
-        <VCol v-for="(data, index) in teamData" :key="index" cols="12" lg="3" sm="6">
-          <VCard flat min-width="267" class="position-relative overflow-visible team-card mb-lg-0 mb-12 mt-4">
-            <div
-              :style="{ maxHeight: '185px', minHeight: '185px', borderRadius: '90px 20px 0 0', backgroundColor: data.backgroundColor, border: `1px solid ${data.borderColor}`, borderBottom: 'none' }">
-              <VImg :src="data.image_url" height="240" class="team-image bw-img" />
-            </div>
-            <VCardText class="text-center pa-4"
-              :style="{ border: `1px solid ${data.borderColor}`, borderBlockStart: 'none', borderRadius: '0 0 6px 6px', boxSizing: 'border-box' }">
-              <h5 class="text-h5">
-                {{ data.name }}
-              </h5>
-              <p class="text-body-1 text-disabled mb-0">
-                {{ data.position }}
-              </p>
-            </VCardText>
-          </VCard>
-        </VCol>
-      </VRow>
-    </div>
-  </VContainer>
+    </VContainer>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -113,11 +115,6 @@ onMounted(fetchTeam)
   inline-size: 120%;
   inset-block-end: 12%;
   inset-inline-start: -12%;
-}
-
-.bw-img {
-  filter: grayscale(1);
-  transition: filter 0.3s;
 }
 
 .team-card:hover .bw-img {

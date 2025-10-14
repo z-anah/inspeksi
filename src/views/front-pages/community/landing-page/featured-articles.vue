@@ -44,30 +44,24 @@ const navigateToArticle = (articleId) => {
   <VContainer>
     <div class="d-flex justify-center align-center payment-card">
       <VRow>
-        <VCol cols="12" md="4" class="mb-8 mb-md-0 d-flex flex-column align-center justify-center">
-          <VAvatar variant="tonal" size="52" rounded color="primary">
-            <VIcon icon="tabler-bulb" size="36" />
+        <VCol cols="12" md="4" class="mb-6 mb-md-0 d-flex flex-column align-center justify-center">
+          <VAvatar variant="tonal" size="48" rounded color="primary">
+            <VIcon icon="tabler-bulb" size="32" />
           </VAvatar>
-          <h4 class="text-h4 font-weight-medium mt-4 mb-2 text-center">
-            Featured Community Articles
+          <h4 class="text-h5 font-weight-medium mt-3 mb-2 text-center">
+            Artikel Inspeksi
           </h4>
-          <p class="text-body-1 text-center mb-2">
-            Explore resources and real stories to empower your anti-corruption journey.
+          <p class="text-body-2 text-center mb-3">
+            Jelajahi opini, aktivitas, kisah inspiratif dan berita terkini untuk menguatkan semangat antikorupsi mu!
           </p>
-          <VBtn to="/articles">Read All Articles</VBtn>
+          <VBtn to="/articles" size="small">Baca Semua Artikel</VBtn>
         </VCol>
         <VCol v-for="(article, idx) in articles" :key="article.id || idx" cols="12" md="4" sm="6">
-          <VCard 
-            flat 
-            border 
-            class="cursor-pointer h-100"
-            hover
-            @click="navigateToArticle(article.id)"
-          >
+          <VCard flat border class="cursor-pointer h-100" hover @click="navigateToArticle(article.id)">
             <div class="px-2 pt-2">
-              <VImg :src="article.image" :alt="article.title" class="w-100 rounded" height="200" cover />
+              <VImg :src="article.image" :alt="article.title" class="w-100 rounded" height="180" cover />
             </div>
-            <VCardText>
+            <VCardText class="pa-3">
               <h5 class="text-h5 mb-2 text-truncate"
                 style="max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                 {{ article.title.length > 38 ? article.title.slice(0, 35) + '...' : article.title }}
@@ -85,7 +79,7 @@ const navigateToArticle = (articleId) => {
 
 <style lang="scss" scoped>
 .payment-card {
-  margin-block: 10.5rem 5.25rem;
+  margin-block: 3rem 3rem;
 }
 
 .text-truncate-multiline {

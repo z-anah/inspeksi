@@ -32,7 +32,7 @@ const navigateToArticle = async (articleId) => {
                 class="flex-shrink-0 rounded" cover />
             </div>
             <div class="flex-grow-1 text-right">
-              <p class="text-caption text-medium-emphasis mb-1">Previous Article</p>
+              <p class="text-caption text-medium-emphasis mb-1">Artikel Sebelumnya</p>
               <h4 class="text-body-1 font-weight-medium">{{ navigation.previous.title }}</h4>
             </div>
           </VCardText>
@@ -47,7 +47,7 @@ const navigateToArticle = async (articleId) => {
         >
           <VCardText class="d-flex ga-3">
             <div class="flex-grow-1">
-              <p class="text-caption text-medium-emphasis mb-1">Next Article</p>
+              <p class="text-caption text-medium-emphasis mb-1">Artikel Selanjutnya</p>
               <h4 class="text-body-1 font-weight-medium">{{ navigation.next.title }}</h4>
             </div>
             <div style="width: 60px; height: 60px;">

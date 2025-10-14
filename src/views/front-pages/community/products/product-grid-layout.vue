@@ -26,11 +26,11 @@ const handleAddToCart = (product) => {
             <VImg :src="product.image" :alt="product.name" height="200" cover />
             <VChip v-if="!product.inStock" color="error" size="small" class="position-absolute"
               style="top: 8px; right: 8px;">
-              Out of Stock
+              Stok Habis
             </VChip>
             <VChip v-else-if="product.featured" color="primary" size="small" class="position-absolute"
               style="top: 8px; right: 8px;">
-              Featured
+              Unggulan
             </VChip>
           </div>
 
@@ -62,7 +62,7 @@ const handleAddToCart = (product) => {
               :disabled="!product.inStock"
               @click="handleAddToCart(product)"
             >
-              {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
+              {{ product.inStock ? 'Tambah ke Keranjang' : 'Stok Habis' }}
             </VBtn>
           </VCardActions>
         </VCard>

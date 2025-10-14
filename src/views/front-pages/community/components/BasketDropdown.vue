@@ -32,7 +32,7 @@ const proceedToCheckout = () => {
       <VBadge v-if="cartStore.itemCount > 0" :content="cartStore.itemCount" color="error" floating offset-x="4" offset-y="4" />
 
       <VTooltip activator="parent" open-delay="1000" scroll-strategy="close">
-        <span>Shopping Basket ({{ cartStore.itemCount }} items)</span>
+        <span>Keranjang Belanja ({{ cartStore.itemCount }} item)</span>
       </VTooltip>
     </VBtn>
 
@@ -44,7 +44,7 @@ const proceedToCheckout = () => {
         <VCardTitle class="d-flex align-center justify-space-between pa-4 pb-2">
           <div class="d-flex align-center ga-2">
             <VIcon icon="tabler-shopping-cart" size="16" />
-            <span class="text-body-1 font-weight-medium">Shopping Basket</span>
+            <span class="text-body-1 font-weight-medium">Keranjang Belanja</span>
             <VChip size="x-small" color="primary">{{ cartStore.itemCount }}</VChip>
           </div>
           <VBtn icon="tabler-x" variant="text" size="x-small" @click="closeBasket" />
@@ -57,10 +57,10 @@ const proceedToCheckout = () => {
           <!-- Empty State -->
           <div v-if="cartStore.items.length === 0" class="text-center py-6">
             <VIcon icon="tabler-shopping-cart-off" size="32" class="text-medium-emphasis mb-2" />
-            <div class="text-body-1 font-weight-medium mb-1">Your basket is empty</div>
-            <div class="text-body-2 text-medium-emphasis mb-3">Add some items to get started</div>
+            <div class="text-body-1 font-weight-medium mb-1">Keranjang Anda kosong</div>
+            <div class="text-body-2 text-medium-emphasis mb-3">Tambahkan beberapa item untuk memulai</div>
             <VBtn color="primary" variant="tonal" size="small" @click="closeBasket">
-              Continue Shopping
+              Lanjut Belanja
             </VBtn>
           </div>
 
@@ -114,17 +114,17 @@ const proceedToCheckout = () => {
                   @click="proceedToCheckout"
                   :disabled="!cartStore.whatsappNumber"
                 >
-                  Order via WhatsApp
+                  Pesan via WhatsApp
                 </VBtn>
                 <VBtn variant="outlined" block size="small" @click="closeBasket">
-                  Continue Shopping
+                  Lanjut Belanja
                 </VBtn>
               </div>
 
               <!-- Clear Basket -->
               <div class="text-center mt-2">
                 <VBtn variant="text" size="x-small" color="error" @click="cartStore.clearCart">
-                  Clear Basket
+                  Kosongkan Keranjang
                 </VBtn>
               </div>
             </div>

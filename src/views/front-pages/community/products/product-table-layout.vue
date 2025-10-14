@@ -7,18 +7,18 @@ defineProps({
 })
 
 const headers = [
-  { title: 'Product', key: 'product', sortable: false },
-  { title: 'Category', key: 'category' },
-  { title: 'Price', key: 'price' },
+  { title: 'Produk', key: 'product', sortable: false },
+  { title: 'Kategori', key: 'category' },
+  { title: 'Harga', key: 'price' },
   { title: 'Rating', key: 'rating' },
-  { title: 'Stock', key: 'inStock' },
-  { title: 'Actions', key: 'actions', sortable: false }
+  { title: 'Stok', key: 'inStock' },
+  { title: 'Aksi', key: 'actions', sortable: false }
 ]
 </script>
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Product Table</h2>
+    <h2 class="text-h4 font-weight-medium mb-4">Tabel Produk</h2>
 
     <VCard>
       <VDataTable :headers="headers" :items="products" item-key="id" class="text-no-wrap">
@@ -34,10 +34,10 @@ const headers = [
 
         <template #item.price="{ item }">
           <div>
-            <span class="text-primary font-weight-medium">${{ item.price }}</span>
+            <span class="text-primary font-weight-medium">Rp {{ new Intl.NumberFormat('id-ID').format(item.price) }}</span>
             <span v-if="item.originalPrice > item.price"
               class="text-decoration-line-through text-medium-emphasis ms-2 text-caption">
-              ${{ item.originalPrice }}
+              Rp {{ new Intl.NumberFormat('id-ID').format(item.originalPrice) }}
             </span>
           </div>
         </template>
@@ -51,14 +51,14 @@ const headers = [
 
         <template #item.inStock="{ item }">
           <VChip :color="item.inStock ? 'success' : 'error'" size="small" variant="tonal">
-            {{ item.inStock ? 'In Stock' : 'Out of Stock' }}
+            {{ item.inStock ? 'Tersedia' : 'Habis' }}
           </VChip>
         </template>
 
         <template #item.actions="{ item }">
           <div class="d-flex ga-2">
             <VBtn color="primary" variant="flat" size="small" :disabled="!item.inStock">
-              Add to Cart
+              Tambah ke Keranjang
             </VBtn>
             <VBtn icon="tabler-eye" variant="text" size="small" />
           </div>

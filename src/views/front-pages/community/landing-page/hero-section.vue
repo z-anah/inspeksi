@@ -1,4 +1,7 @@
 <script setup>
+import imageFile from '@images/inspeksi/7.png'
+import overlayImageFile from '@images/inspeksi/8.png'
+
 definePage({
   meta: {
     layout: 'blank',
@@ -9,19 +12,19 @@ definePage({
 const props = defineProps({
   tagline: {
     type: String,
-    default: 'Together Against Corruption',
+    default: 'Berani Berantas Korupsi',
   },
   title: {
     type: String,
-    default: 'Building a Transparent and Accountable Community',
+    default: 'Membangun Jejaring Pemberantasan Korupsi Dalam Pengadaan Publik',
   },
   description: {
     type: String,
-    default: 'Join us in the fight against corruption. Empower communities, uphold integrity, and create lasting change.',
+    default: 'Bergabunglah bersama kami untuk menciptakan ekosistem pengadaan publik yang bebas dari korupsi',
   },
   buttonLabel: {
     type: String,
-    default: 'Join the Movement',
+    default: 'Gabung Ke Komunitas',
   },
   buttonLink: {
     type: String,
@@ -30,17 +33,17 @@ const props = defineProps({
   highlights: {
     type: Array,
     default: () => [
-      { icon: '🌍', text: '1000+ Active Members' },
-      { icon: '🤝', text: 'Community-driven Initiatives' },
+      { icon: '🌍', text: '200+ Anggota Aktif' },
+      { icon: '🤝', text: '5+ Mitra Strategis' },
     ],
   },
   image: {
     type: String,
-    default: 'https://placehold.co/912x716',
+    default: imageFile,
   },
   overlayImage: {
     type: String,
-    default: 'https://placehold.co/287x177',
+    default: overlayImageFile,
   },
 })
 

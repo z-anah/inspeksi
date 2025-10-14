@@ -23,10 +23,10 @@ const filteredProducts = computed(() => {
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Products by Category</h2>
+    <h2 class="text-h4 font-weight-medium mb-4">Produk Berdasarkan Kategori</h2>
 
     <VTabs v-model="activeTab" class="mb-6">
-      <VTab>All Products</VTab>
+      <VTab>Semua Produk</VTab>
       <VTab v-for="category in categories" :key="category">{{ category }}</VTab>
     </VTabs>
 
@@ -40,14 +40,14 @@ const filteredProducts = computed(() => {
               <VCardText>
                 <h4 class="text-h6 font-weight-medium mb-2">{{ product.name }}</h4>
                 <div class="d-flex align-center justify-space-between mb-3">
-                  <span class="text-h6 text-primary">${{ product.price }}</span>
+                  <span class="text-h6 text-primary">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</span>
                   <VChip size="x-small" variant="tonal">{{ product.category }}</VChip>
                 </div>
               </VCardText>
 
               <VCardActions>
                 <VBtn color="primary" variant="flat" block size="small" :disabled="!product.inStock">
-                  Add to Cart
+                  Tambah ke Keranjang
                 </VBtn>
               </VCardActions>
             </VCard>

@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Product Masonry</h2>
+    <h2 class="text-h4 font-weight-medium mb-4">Tampilan Masonry Produk</h2>
 
     <div class="masonry-container">
       <VCard v-for="product in products" :key="'masonry-' + product.id" class="masonry-item mb-4">
@@ -24,9 +24,9 @@ defineProps({
           </div>
 
           <div class="d-flex align-center justify-space-between">
-            <span class="text-h6 text-primary">${{ product.price }}</span>
+            <span class="text-h6 text-primary">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</span>
             <VBtn color="primary" variant="flat" size="x-small" :disabled="!product.inStock">
-              Add
+              Tambah
             </VBtn>
           </div>
         </VCardText>

@@ -95,12 +95,12 @@ const fetchProducts = async () => {
     image: p.product_images?.find(img => img.is_primary)?.image_url
       || p.product_images?.[0]?.image_url
       || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
-    category: 'Products',
+    category: 'Produk',
     rating: Math.floor(Math.random() * 5) + 1, // Random rating 1-5
     reviews: Math.floor(Math.random() * 10) + 1, 
     inStock: p.stock > 0,
     stock: p.stock,
-    tags: ['product'],
+    tags: ['produk'],
     featured: Math.random() > 0.5, // Random featured status
     primary_image: p.product_images?.find(img => img.is_primary)?.image_url
       || p.product_images?.[0]?.image_url
@@ -108,7 +108,7 @@ const fetchProducts = async () => {
   }))
   
   // Extract unique categories (for now just use 'Products')
-  categories.value = ['Products']
+  categories.value = ['Produk']
   loading.value = false
 }
 
@@ -159,32 +159,32 @@ definePage({
         <!-- Loading State -->
         <div v-if="loading" class="text-center py-8">
           <VProgressCircular indeterminate color="primary" size="64" />
-          <div class="mt-4">Loading products...</div>
+          <div class="mt-4">Memuat produk...</div>
         </div>
         
         <VRow v-else>
           <!-- Main Column -->
           <VCol cols="12" lg="8">
             <div class="d-flex justify-space-between align-center mb-6">
-              <h1 class="text-h3 font-weight-bold">Product Showcase</h1>
+              <h1 class="text-h3 font-weight-bold">Showcase Produk</h1>
               <VChip color="primary" size="small">
-                {{ filteredProducts.length }} product{{ filteredProducts.length !== 1 ? 's' : '' }} found
+                {{ filteredProducts.length }} produk ditemukan
               </VChip>
             </div>
 
             <!-- No Results -->
             <div v-if="filteredProducts.length === 0" class="text-center py-8">
               <VIcon icon="tabler-search-off" size="64" class="text-medium-emphasis mb-4" />
-              <h3 class="text-h5 font-weight-medium mb-2">No products found</h3>
+              <h3 class="text-h5 font-weight-medium mb-2">Tidak ada produk ditemukan</h3>
               <p class="text-body-1 text-medium-emphasis mb-4">
-                Try adjusting your search criteria or filters
+                Coba sesuaikan kriteria pencarian atau filter Anda
               </p>
               <VBtn 
                 color="primary" 
                 variant="tonal" 
                 @click="() => { searchQuery = ''; filters.priceRange = [0, 1000000]; filters.minRating = 0 }"
               >
-                Clear all filters
+                Hapus semua filter
               </VBtn>
             </div>
 

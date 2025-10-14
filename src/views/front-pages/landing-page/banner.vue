@@ -11,17 +11,17 @@ import ctaDashborad from '@images/front-pages/landing-page/cta-dashboard.png'
       <div class="d-flex justify-center justify-md-space-between flex-wrap gap-6 gap-x-10 position-relative pt-12">
         <div class="align-self-center">
           <div class="banner-title text-primary mb-1">
-            Ready to Get Started?
+            Siap untuk Memulai?
           </div>
           <h5 class="text-h5 text-medium-emphasis mb-8">
-            Start your project with a 14-day free trial
+            Mulai proyek Anda dengan uji coba gratis 14 hari
           </h5>
           <VBtn
             color="primary"
             :to="{ name: 'front-pages-payment' }"
             :size="$vuetify.display.smAndUp ? 'large' : 'default' "
           >
-            Get Started
+            Mulai Sekarang
           </VBtn>
         </div>
 

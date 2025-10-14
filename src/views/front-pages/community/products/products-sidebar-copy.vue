@@ -59,11 +59,11 @@ watch(() => props.searchQuery, (newQuery) => {
     <!-- Search -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Search Products</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Cari Produk</h4>
         <VTextField 
           :model-value="localSearchQuery" 
           @update:model-value="updateSearch" 
-          placeholder="Search products..."
+          placeholder="Cari produk..."
           prepend-inner-icon="tabler-search" 
           variant="outlined" 
           hide-details 
@@ -74,7 +74,7 @@ watch(() => props.searchQuery, (newQuery) => {
     <!-- Price Range -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Price Range</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Rentang Harga</h4>
         <VRangeSlider 
           v-model="priceRange" 
           :max="1000000" 
@@ -93,13 +93,13 @@ watch(() => props.searchQuery, (newQuery) => {
     <!-- Filters -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Filters</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Filter</h4>
 
         <div class="mb-4">
-          <label class="text-body-2 font-weight-medium mb-2 d-block">Minimum Rating</label>
+          <label class="text-body-2 font-weight-medium mb-2 d-block">Rating Minimum</label>
           <VRating v-model="minRating" color="warning" size="small" />
           <div class="text-caption text-medium-emphasis mt-1">
-            {{ minRating === 0 ? 'All ratings' : `${minRating} stars and above` }}
+            {{ minRating === 0 ? 'Semua rating' : `${minRating} bintang ke atas` }}
           </div>
         </div>
       </VCardText>
@@ -108,7 +108,7 @@ watch(() => props.searchQuery, (newQuery) => {
     <!-- Active Filters Summary -->
     <VCard v-if="localSearchQuery || minRating > 0 || priceRange[0] > 0 || priceRange[1] < 1000000">
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Active Filters</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Filter Aktif</h4>
         
         <div class="d-flex flex-wrap ga-2">
           <VChip 
@@ -117,7 +117,7 @@ watch(() => props.searchQuery, (newQuery) => {
             closable 
             @click:close="updateSearch('')"
           >
-            Search: "{{ localSearchQuery }}"
+            Pencarian: "{{ localSearchQuery }}"
           </VChip>
           
           <VChip 
@@ -126,7 +126,7 @@ watch(() => props.searchQuery, (newQuery) => {
             closable 
             @click:close="minRating = 0"
           >
-            {{ minRating }}+ stars
+            {{ minRating }}+ bintang
           </VChip>
           
           <VChip 

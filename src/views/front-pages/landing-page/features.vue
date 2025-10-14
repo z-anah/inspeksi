@@ -3,7 +3,7 @@ import { supabase } from '@/libs/supabase'
 import { onMounted, ref } from 'vue'
 
 const sectionTitle = 'Mengapa Bergabung?'
-const sectionSubTitle = 'Opini Kami'
+const sectionSubTitle = 'Pendapat Kami'
 const featuresData = ref([])
 
 const fetchOpinions = async () => {

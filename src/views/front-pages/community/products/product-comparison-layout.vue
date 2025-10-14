@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Product Comparison</h2>
+    <h2 class="text-h4 font-weight-medium mb-4">Perbandingan Produk</h2>
 
     <VCard>
       <VCardText class="pa-6">
@@ -21,7 +21,7 @@ defineProps({
               <h4 class="text-h6 font-weight-medium mb-2">{{ product.name }}</h4>
 
               <VChip :color="product.inStock ? 'success' : 'error'" size="small" class="mb-3">
-                {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+                {{ product.inStock ? 'Tersedia' : 'Stok Habis' }}
               </VChip>
 
               <div class="mb-3">
@@ -30,15 +30,15 @@ defineProps({
               </div>
 
               <div class="mb-4">
-                <div class="text-h5 text-primary">${{ product.price }}</div>
+                <div class="text-h5 text-primary">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</div>
                 <div v-if="product.originalPrice > product.price"
                   class="text-decoration-line-through text-medium-emphasis">
-                  ${{ product.originalPrice }}
+                  Rp {{ new Intl.NumberFormat('id-ID').format(product.originalPrice) }}
                 </div>
               </div>
 
               <VBtn color="primary" variant="flat" size="small" :disabled="!product.inStock" block>
-                Add to Cart
+                Tambah ke Keranjang
               </VBtn>
             </div>
           </VCol>

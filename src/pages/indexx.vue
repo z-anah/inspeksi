@@ -59,23 +59,6 @@ useIntersectionObserver([
     <div :style="{ 'background-color': 'rgb(var(--v-theme-surface))' }">
       <CustomersReview />
     </div>
-
-    <!-- 👉 Our Team -->
-    <div :style="{ 'background-color': 'rgb(var(--v-theme-surface))' }">
-      <OurTeam ref="refTeam" />
-    </div>
-
-    <!-- 👉 FAQ Section -->
-    <div :style="{ 'background-color': 'rgb(var(--v-theme-surface))' }">
-      <FaqSection ref="refFaq" />
-    </div>
-
-    <!-- 👉 Contact Us  -->
-    <ContactUs ref="refContact" />
-
-
-    <!-- 👉 Footer -->
-    <Footer />
   </div>
 </template>
 

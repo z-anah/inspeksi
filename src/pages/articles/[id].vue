@@ -38,23 +38,23 @@ const fetchArticle = async (id) => {
       subtitle: data.subtitle || '',
       excerpt: data.excerpt || '',
       author: {
-        name: data.author_name || 'Anonymous',
-        role: 'Contributor',
-        avatar: data.author_avatar || 'https://images.unsplash.com/photo-1494790108755-2616b612b412?w=150&h=150&fit=crop&crop=face',
-        bio: data.author_bio || 'Community contributor and writer.',
+        name: data.author_name || 'Anonim',
+        role: 'Kontributor',
+        avatar: data.author_avatar || 'https://api.dicebear.com/9.x/notionists/svg?randomizeIds=false',
+        bio: data.author_bio || 'Kontributor komunitas dan penulis.',
         socialLinks: {
-          twitter: '@contributor',
-          linkedin: 'contributor'
+          twitter: '@kontributor',
+          linkedin: 'kontributor'
         }
       },
-      date: new Date(data.published_at).toLocaleDateString('en-US', {
+      date: new Date(data.published_at).toLocaleDateString('id-ID', {
         year: 'numeric', month: 'long', day: 'numeric'
       }),
-      readingTime: `${Math.max(1, Math.ceil((data.excerpt || '').length / 200))} min read`,
-      category: data.type || 'General',
-      tags: ['community', 'news'],
+      readingTime: `${Math.max(1, Math.ceil((data.excerpt || '').length / 200))} menit baca`,
+      category: data.type || 'Umum',
+      tags: ['komunitas', 'berita'],
       featuredImage: data.image_url || 'https://images.unsplash.com/photo-1560472355-536de3962603?w=800&h=400&fit=crop',
-      content: Array.isArray(data.content) ? data.content.map(p => `<p>${p}</p>`).join('') : '<p>Content not available</p>',
+      content: Array.isArray(data.content) ? data.content.map(p => `<p>${p}</p>`).join('') : '<p>Konten tidak tersedia</p>',
       views: data.views || 0,
       likes: data.likes || 0,
       shares: data.shares || 0,
@@ -84,12 +84,12 @@ const fetchRelatedArticles = async (currentId, category) => {
     relatedArticles.value = data.map(article => ({
       id: article.id,
       title: article.title,
-      excerpt: article.excerpt || 'Read more about this topic...',
+      excerpt: article.excerpt || 'Baca selengkapnya tentang topik ini...',
       image: article.image_url || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop',
-      date: new Date(article.published_at).toLocaleDateString('en-US', {
+      date: new Date(article.published_at).toLocaleDateString('id-ID', {
         year: 'numeric', month: 'long', day: 'numeric'
       }),
-      readingTime: '5 min read'
+      readingTime: '5 menit baca'
     }))
   }
 }
@@ -128,10 +128,10 @@ const fetchComments = async (articleId) => {
   comments.value = [
     {
       id: 1,
-      author: "Community Member",
+      author: "Anggota Komunitas",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face",
-      date: "2 hours ago",
-      content: "Great article! Very informative.",
+      date: "2 jam yang lalu",
+      content: "Artikel yang bagus! Sangat informatif.",
       likes: 5,
       replies: []
     }
@@ -209,12 +209,12 @@ definePage({
 
         <div v-else class="text-center py-12">
           <VIcon icon="tabler-article-off" size="64" class="text-medium-emphasis mb-4" />
-          <h2 class="text-h4 mb-2">Article Not Found</h2>
+          <h2 class="text-h4 mb-2">Artikel Tidak Ditemukan</h2>
           <p class="text-body-1 text-medium-emphasis mb-4">
-            The article you're looking for doesn't exist or has been removed.
+            Artikel yang Anda cari tidak ada atau telah dihapus.
           </p>
           <VBtn to="/articles" color="primary">
-            Back to Articles
+            Kembali ke Artikel
           </VBtn>
         </div>
       </VContainer>

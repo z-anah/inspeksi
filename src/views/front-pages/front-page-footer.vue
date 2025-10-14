@@ -31,7 +31,7 @@ onMounted(fetchWhatsAppNumber)
             &copy;
 
             {{ new Date().getFullYear() }}
-            Inspeksi
+            Inspeksi - Komunitas Anti-Korupsi
           </div>
         </div>
       </VContainer>

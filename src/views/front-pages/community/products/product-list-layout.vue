@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <section>
-    <h2 class="text-h4 font-weight-medium mb-4">Product List</h2>
+    <h2 class="text-h4 font-weight-medium mb-4">Daftar Produk</h2>
     <div class="d-flex flex-column ga-4">
       <VCard v-for="product in products" :key="'list-' + product.id">
         <VCardText class="d-flex ga-4">
@@ -25,20 +25,20 @@ defineProps({
 
             <div class="d-flex align-center mb-3">
               <VRating :model-value="product.rating" readonly size="small" color="warning" class="me-2" />
-              <span class="text-caption">({{ product.reviews }} reviews)</span>
+              <span class="text-caption">({{ product.reviews }} ulasan)</span>
             </div>
 
             <div class="d-flex align-center justify-space-between">
               <div>
-                <span class="text-h6 text-primary">${{ product.price }}</span>
+                <span class="text-h6 text-primary">Rp {{ new Intl.NumberFormat('id-ID').format(product.price) }}</span>
                 <span v-if="product.originalPrice > product.price"
                   class="text-decoration-line-through text-medium-emphasis ms-2">
-                  ${{ product.originalPrice }}
+                  Rp {{ new Intl.NumberFormat('id-ID').format(product.originalPrice) }}
                 </span>
               </div>
 
               <VBtn color="primary" variant="flat" :disabled="!product.inStock">
-                {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
+                {{ product.inStock ? 'Tambah ke Keranjang' : 'Stok Habis' }}
               </VBtn>
             </div>
           </div>

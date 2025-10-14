@@ -59,7 +59,7 @@ const slide = dir => {
           <VCol cols="12" md="3">
             <div class="headers d-flex justify-center flex-column align-start h-100" style="max-inline-size: 275px;">
               <VChip label color="primary" class="mb-4" size="small">
-                Ulasan
+                Testimoni
               </VChip>
               <div class="position-relative mb-1 me-2">
                 <div class="section-title">
@@ -67,7 +67,7 @@ const slide = dir => {
                 </div>
               </div>
               <p class="text-body-1 mb-12">
-                Temukan cerita mereka.
+                Temukan pengalaman mereka bersama komunitas.
               </p>
               <div class="position-relative">
                 <IconBtn class="reviews-button-prev rounded me-4" variant="tonal" color="primary"

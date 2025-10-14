@@ -33,32 +33,32 @@ onMounted(fetchWhatsAppNumber)
 </script>
 
 <template>
-  <div class="bg-surface">
+  <div>
   <VContainer id="contact-us">
     <!-- 👉 Headers  -->
     <div class="contact-us-section">
       <div class="headers d-flex justify-center flex-column align-center">
-        <div class="text-center mb-6">
-          <VChip color="primary" class="mb-3 text-dark font-weight-medium px-4 py-1 rounded-pill" size="small">
+        <div class="text-center mb-4">
+          <VChip color="primary" class="mb-2 text-dark font-weight-medium px-4 py-1 rounded-pill" size="small">
             Hubungi Kami
           </VChip>
-          <h2 class="mb-4 text-h3 lg:text-h1 md:text-h2">
+          <h2 class="mb-3 text-h4 lg:text-h2 md:text-h3">
             Ada pertanyaan atau masukan? Tulis pesan untuk kami
           </h2>
         </div>
       </div>
-      <div class="mb-15">
+      <div class="mb-8">
         <VCard>
           <VCardItem class="pb-0">
-            <h4 class="text-h4 mb-1">
+            <h4 class="text-h5 mb-1">
               Kirim pesan
             </h4>
           </VCardItem>
 
           <VCardText>
-            <p class="mb-6">
-              Jika Anda ingin mendiskusikan sesuatu yang terkait dengan pembayaran, akun, lisensi, kemitraan, atau
-              memiliki pertanyaan pra-penjualan, Anda berada di tempat yang tepat.
+            <p class="mb-4">
+              Jika Anda ingin mendiskusikan sesuatu yang terkait dengan program, akun, kemitraan, atau
+              memiliki pertanyaan umum, Anda berada di tempat yang tepat.
             </p>
             <VForm @submit.prevent="sendToWhatsApp">
               <VRow>
@@ -67,16 +67,16 @@ onMounted(fetchWhatsAppNumber)
                 </VCol>
 
                 <VCol cols="12" md="6">
-                  <AppTextField v-model="email" placeholder="johndoe@gmail.com" label="Alamat email" />
+                  <AppTextField v-model="email" placeholder="johndoe@gmail.com" label="Alamat Email" />
                 </VCol>
 
                 <VCol cols="12">
-                  <AppTextarea v-model="message" placeholder="Tulis pesan" rows="3" label="Pesan" />
+                  <AppTextarea v-model="message" placeholder="Tulis pesan Anda" rows="3" label="Pesan" />
                 </VCol>
 
                 <VCol>
                   <VBtn type="submit">
-                    Kirim Pertanyaan
+                    Kirim Pesan
                   </VBtn>
                 </VCol>
               </VRow>
@@ -91,7 +91,7 @@ onMounted(fetchWhatsAppNumber)
 
 <style lang="scss" scoped>
 .contact-us-section {
-  margin-block: 5.25rem;
+  margin-block: 3rem;
 }
 
 .section-title {

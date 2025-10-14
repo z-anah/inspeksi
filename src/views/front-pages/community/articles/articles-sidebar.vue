@@ -64,7 +64,7 @@ const navigateToArticle = (articleId) => {
     <!-- Search -->
     <VCard>
       <VCardText class="pa-6">
-        <VTextField :model-value="localSearchQuery" @update:model-value="updateSearch" placeholder="Search articles..."
+        <VTextField :model-value="localSearchQuery" @update:model-value="updateSearch" placeholder="Cari artikel..."
           prepend-inner-icon="tabler-search" variant="outlined" hide-details />
       </VCardText>
     </VCard>
@@ -72,7 +72,7 @@ const navigateToArticle = (articleId) => {
     <!-- Recent Articles -->
     <VCard>
       <VCardText class="pa-6">
-        <h3 class="text-h5 font-weight-medium mb-4">Recent Articles</h3>
+        <h3 class="text-h5 font-weight-medium mb-4">Artikel Terbaru</h3>
         <div class="d-flex flex-column gap-3">
           <div 
             v-for="article in recentArticles" 
@@ -90,7 +90,7 @@ const navigateToArticle = (articleId) => {
     <!-- Categories -->
     <VCard>
       <VCardText class="pa-6">
-        <h3 class="text-h5 font-weight-medium mb-4">Categories</h3>
+        <h3 class="text-h5 font-weight-medium mb-4">Kategori</h3>
         <div class="d-flex flex-wrap ga-2">
           <VChip v-for="category in categories" :key="category" size="small" variant="tonal" class="cursor-pointer">
             {{ category.toUpperCase() }}

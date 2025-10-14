@@ -35,13 +35,13 @@ const fetchArticles = async () => {
       return {
         id: article.id,
         title: article.title,
-        author: article.author || 'Anonymous',
-        authorRole: article.author_role || 'Contributor',
-        date: new Date(article.published_at).toLocaleDateString('en-US', {
+        author: article.author || 'Anonim',
+        authorRole: article.author_role || 'Kontributor',
+        date: new Date(article.published_at).toLocaleDateString('id-ID', {
           year: 'numeric', month: 'short', day: 'numeric'
         }),
-        readingTime: `${Math.max(1, Math.ceil((article.excerpt || '').length / 200))} min read`,
-        excerpt: article.excerpt || 'No excerpt available',
+        readingTime: `${Math.max(1, Math.ceil((article.excerpt || '').length / 200))} menit baca`,
+        excerpt: article.excerpt || 'Tidak ada ringkasan tersedia',
         image: article.image_url || 'https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=250&fit=crop',
         category: article.type || 'Rilis',
         tags: ['community', 'news', 'updates'],
@@ -77,52 +77,52 @@ const fetchEvents = async () => {
     events.value = data.map(event => ({
       id: event.id,
       name: event.name,
-      date: new Date(event.event_date).toLocaleDateString('en-US', {
+      date: new Date(event.event_date).toLocaleDateString('id-ID', {
         year: 'numeric', month: 'short', day: 'numeric'
       }),
-      time: event.event_time || '6:00 PM',
-      location: event.location || 'Community Center'
+      time: event.event_time || '18:00',
+      location: event.location || 'Pusat Komunitas'
     }))
   } else {
     // Fallback static events
     events.value = [
-      { id: 1, name: "Community Gathering", date: "Oct 10, 2025", time: "6:00 PM", location: "Community Center" },
-      { id: 2, name: "Workshop: Digital Services", date: "Oct 15, 2025", time: "2:00 PM", location: "Library Meeting Room" }
+      { id: 1, name: "Pertemuan Komunitas", date: "10 Okt 2025", time: "18:00", location: "Pusat Komunitas" },
+      { id: 2, name: "Workshop: Layanan Digital", date: "15 Okt 2025", time: "14:00", location: "Ruang Rapat Perpustakaan" }
     ]
   }
 }
 
 const spotlight = ref({
   name: "Maria Lopez",
-  quote: "This community helped me share my story and connect with others."
+  quote: "Komunitas ini membantu saya berbagi cerita dan terhubung dengan orang lain."
 })
 
 const testimonials = ref([
-  { id: 1, text: "Amazing support from the front office team. They made the permit process so much easier.", author: "Alex P.", role: "Local Business Owner" },
-  { id: 2, text: "I feel more connected to the community now. The events and programs are fantastic.", author: "Samira K.", role: "Resident" },
-  { id: 3, text: "The youth program changed my perspective and gave me leadership skills I use every day.", author: "Jordan M.", role: "Program Graduate" },
-  { id: 4, text: "Excellent communication and transparency from the community office.", author: "Robert L.", role: "Community Volunteer" },
-  { id: 5, text: "The digital tools have made accessing services so much more convenient.", author: "Elena V.", role: "Senior Resident" }
+  { id: 1, text: "Dukungan luar biasa dari tim front office. Mereka membuat proses perizinan menjadi jauh lebih mudah.", author: "Alex P.", role: "Pemilik Usaha Lokal" },
+  { id: 2, text: "Saya merasa lebih terhubung dengan komunitas sekarang. Acara dan programnya fantastis.", author: "Samira K.", role: "Warga" },
+  { id: 3, text: "Program pemuda mengubah perspektif saya dan memberikan keterampilan kepemimpinan yang saya gunakan setiap hari.", author: "Jordan M.", role: "Lulusan Program" },
+  { id: 4, text: "Komunikasi dan transparansi yang sangat baik dari kantor komunitas.", author: "Robert L.", role: "Sukarelawan Komunitas" },
+  { id: 5, text: "Alat digital telah membuat mengakses layanan menjadi jauh lebih nyaman.", author: "Elena V.", role: "Warga Senior" }
 ])
 
 const partners = ref([
-  { id: 1, name: "Local Chamber", logo: "https://via.placeholder.com/80x40?text=Chamber" },
-  { id: 2, name: "Community Bank", logo: "https://via.placeholder.com/80x40?text=Bank" },
-  { id: 3, name: "Regional Health", logo: "https://via.placeholder.com/80x40?text=Health" },
-  { id: 4, name: "Education Foundation", logo: "https://via.placeholder.com/80x40?text=Education" },
-  { id: 5, name: "Environmental Group", logo: "https://via.placeholder.com/80x40?text=Green" },
-  { id: 6, name: "Tech Collaborative", logo: "https://via.placeholder.com/80x40?text=Tech" }
+  { id: 1, name: "Kamar Dagang Lokal", logo: "https://via.placeholder.com/80x40?text=Kamar+Dagang" },
+  { id: 2, name: "Bank Komunitas", logo: "https://via.placeholder.com/80x40?text=Bank" },
+  { id: 3, name: "Kesehatan Regional", logo: "https://via.placeholder.com/80x40?text=Kesehatan" },
+  { id: 4, name: "Yayasan Pendidikan", logo: "https://via.placeholder.com/80x40?text=Pendidikan" },
+  { id: 5, name: "Kelompok Lingkungan", logo: "https://via.placeholder.com/80x40?text=Hijau" },
+  { id: 6, name: "Kolaboratif Teknologi", logo: "https://via.placeholder.com/80x40?text=Teknologi" }
 ])
 
 const faqs = ref([
-  { id: 1, question: "How can I submit a permit application?", category: "Services" },
-  { id: 2, question: "Where do I find community event schedules?", category: "Events" },
-  { id: 3, question: "Who do I contact for neighborhood concerns?", category: "Support" },
-  { id: 4, question: "How do I register for community programs?", category: "Programs" },
-  { id: 5, question: "What are the office hours and contact information?", category: "Contact" },
-  { id: 6, question: "How can I volunteer for community initiatives?", category: "Volunteer" },
-  { id: 7, question: "Where can I access community resources and services?", category: "Resources" },
-  { id: 8, question: "How do I report community issues or suggestions?", category: "Feedback" }
+  { id: 1, question: "Bagaimana cara mengajukan permohonan izin?", category: "Layanan" },
+  { id: 2, question: "Di mana saya bisa menemukan jadwal acara komunitas?", category: "Acara" },
+  { id: 3, question: "Siapa yang harus saya hubungi untuk masalah lingkungan?", category: "Dukungan" },
+  { id: 4, question: "Bagaimana cara mendaftar program komunitas?", category: "Program" },
+  { id: 5, question: "Apa jam kerja dan informasi kontak?", category: "Kontak" },
+  { id: 6, question: "Bagaimana cara menjadi sukarelawan untuk inisiatif komunitas?", category: "Sukarelawan" },
+  { id: 7, question: "Di mana saya bisa mengakses sumber daya dan layanan komunitas?", category: "Sumber Daya" },
+  { id: 8, question: "Bagaimana cara melaporkan masalah atau saran komunitas?", category: "Umpan Balik" }
 ])
 
 const filteredArticles = computed(() => {
@@ -184,7 +184,7 @@ definePage({
       <VRow>
         <!-- Main Column -->
         <VCol cols="12" lg="8">
-          <h1 class="text-h3 font-weight-bold mb-6">Hello Community Articles</h1>
+          <h1 class="text-h3 font-weight-bold mb-6">Artikel Inspeksi</h1>
 
           <VAlert v-if="error" type="error" class="mb-4">
             {{ error }}
@@ -198,8 +198,8 @@ definePage({
             <!-- Search Results Info -->
             <div v-if="searchQuery.trim() && !searchLoading" class="mb-2">
               <VChip size="small" color="primary" variant="tonal">
-                {{ filteredArticles.length }} result{{ filteredArticles.length !== 1 ? 's' : '' }}
-                for "{{ searchQuery }}"
+                {{ filteredArticles.length }} hasil
+                untuk "{{ searchQuery }}"
               </VChip>
             </div>
 

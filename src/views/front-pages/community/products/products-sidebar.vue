@@ -36,8 +36,8 @@ const updateSearch = (value) => {
     <!-- Search -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Search Products</h4>
-        <VTextField :model-value="localSearchQuery" @update:model-value="updateSearch" placeholder="Search products..."
+        <h4 class="text-h6 font-weight-medium mb-4">Cari Produk</h4>
+        <VTextField :model-value="localSearchQuery" @update:model-value="updateSearch" placeholder="Cari produk..."
           prepend-inner-icon="tabler-search" variant="outlined" hide-details />
       </VCardText>
     </VCard>
@@ -45,11 +45,11 @@ const updateSearch = (value) => {
     <!-- Price Range -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Price Range</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Rentang Harga</h4>
         <VRangeSlider v-model="priceRange" :max="200" :min="0" :step="5" color="primary" class="mb-4" />
         <div class="d-flex justify-space-between">
-          <span class="text-body-2">${{ priceRange[0] }}</span>
-          <span class="text-body-2">${{ priceRange[1] }}</span>
+          <span class="text-body-2">Rp {{ new Intl.NumberFormat('id-ID').format(priceRange[0]) }}</span>
+          <span class="text-body-2">Rp {{ new Intl.NumberFormat('id-ID').format(priceRange[1]) }}</span>
         </div>
       </VCardText>
     </VCard>
@@ -57,7 +57,7 @@ const updateSearch = (value) => {
     <!-- Categories -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Categories</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Kategori</h4>
         <VCheckbox v-for="category in categories" :key="category" v-model="selectedCategories" :value="category"
           :label="category" hide-details />
       </VCardText>
@@ -66,14 +66,14 @@ const updateSearch = (value) => {
     <!-- Filters -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Filters</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Filter</h4>
 
-        <VCheckbox v-model="inStockOnly" label="In Stock Only" hide-details class="mb-2" />
+        <VCheckbox v-model="inStockOnly" label="Hanya Produk Tersedia" hide-details class="mb-2" />
 
-        <VCheckbox v-model="featuredOnly" label="Featured Products" hide-details class="mb-4" />
+        <VCheckbox v-model="featuredOnly" label="Produk Unggulan" hide-details class="mb-4" />
 
         <div class="mb-4">
-          <label class="text-body-2 font-weight-medium mb-2 d-block">Minimum Rating</label>
+          <label class="text-body
           <VRating v-model="minRating" color="warning" size="small" />
         </div>
       </VCardText>

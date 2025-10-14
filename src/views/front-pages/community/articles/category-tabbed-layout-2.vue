@@ -46,7 +46,7 @@ const navigateToArticle = (articleId) => {
 <template>
   <section>
     <VTabs v-model="activeTab" class="mb-4 v-tabs-pill">
-      <VTab>All Articles</VTab>
+      <VTab>Semua Artikel</VTab>
       <VTab v-for="category in categories" :key="category">{{ category.toUpperCase() }}</VTab>
     </VTabs>
 
@@ -80,7 +80,7 @@ const navigateToArticle = (articleId) => {
           
           <div v-if="!articles.length && searchActive" class="text-center py-8">
             <VIcon icon="tabler-search-off" size="48" class="text-medium-emphasis mb-2" />
-            <p class="text-body-1 text-medium-emphasis">No articles found matching your search.</p>
+            <p class="text-body-1 text-medium-emphasis">Tidak ada artikel yang cocok dengan pencarian Anda.</p>
           </div>
         </div>
       </VTabsWindowItem>
@@ -116,7 +116,7 @@ const navigateToArticle = (articleId) => {
           <div v-if="!filteredArticlesByCategory[index]?.length" class="text-center py-8">
             <VIcon icon="tabler-article-off" size="48" class="text-medium-emphasis mb-2" />
             <p class="text-body-1 text-medium-emphasis">
-              {{ searchActive ? 'No articles found in this category.' : 'No articles available in this category.' }}
+              {{ searchActive ? 'Tidak ada artikel yang ditemukan dalam kategori ini.' : 'Tidak ada artikel tersedia dalam kategori ini.' }}
             </p>
           </div>
         </div>

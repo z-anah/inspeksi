@@ -11,8 +11,8 @@ defineProps({
   <section>
     <!-- Breadcrumbs -->
     <VBreadcrumbs :items="[
-      { title: 'Home', to: '/' },
-      { title: 'Articles', to: '/articles' },
+      { title: 'Beranda', to: '/' },
+      { title: 'Artikel', to: '/articles' },
       { title: article.title, disabled: true }
     ]" class="pa-0 mb-4" />
 
@@ -43,7 +43,7 @@ defineProps({
           </div>
           <div class="d-flex align-center ga-1">
             <VIcon icon="tabler-eye" size="16" />
-            {{ article.views }} views
+            {{ article.views }} tampilan
           </div>
         </div>
       </div>

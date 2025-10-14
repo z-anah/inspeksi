@@ -1,4 +1,6 @@
 <script setup>
+import intergritasFile from '@images/inspeksi/integritas.png'
+
 definePage({
   meta: {
     layout: 'blank',
@@ -9,43 +11,44 @@ definePage({
 const steps = [
   {
     number: '01',
-    title: 'Understand the Mission',
-    description: 'Learn about our anti-corruption goals and how you can contribute to a transparent community.',
+    title: 'Pendidikan Antikorupsi',
+    description: 'Melaksanakan pendidikan antikorupsi dalam pengadaan publik bagi kalangan Pelaku Pengadaan dan masyarakat',
   },
   {
     number: '02',
-    title: 'Take Action',
-    description: 'Report corruption, participate in campaigns, and help spread awareness in your area.',
+    title: 'Kampanye Antikorupsi',
+    description: 'Meningkatkan kesadaran Pelaku Pengadaan dan masyarakat tentang bahaya korupsi dan pentingnya berperan aktif dalam pemberantasannya',
   },
   {
     number: '03',
-    title: 'Empower Others',
-    description: 'Invite friends, family, and colleagues to join and strengthen the movement together.',
+    title: 'Agen Antikorupsi',
+    description: 'Meningkatkan partisipasi Pelaku Pengadaan dan masyarakat dalam upaya pencegahan dan pemberantasan korupsi',
   },
 ]
 
-const guideImage = 'https://placehold.co/1363x500'
+const guideImage = intergritasFile
 </script>
 
 <template>
   <div class="help-center-page">
     <div class="help-center-section bg-surface">
       <VContainer>
-        <section class="bg-white py-10 md:py-22.5 lg:py-25">
-          <div class="text-center mb-6">
-            <VChip color="primary" class="mb-3 text-dark font-weight-medium px-4 py-1 rounded-pill" size="small">
-              Community Mission Steps
+        <section class="bg-white py-6 md:py-10 lg:py-12">
+          <div class="text-center mb-4">
+            <VChip color="primary" class="mb-2 text-dark font-weight-medium px-4 py-1 rounded-pill" size="small">
+              Visi Misi Komunitas
             </VChip>
-            <h2 class="mb-4 text-h3 lg:text-h1 md:text-h2">
-              Mission for a Corruption-Free Community
+            <h2 class="mb-3 text-h4 lg:text-h2 md:text-h3">
+              Menjadi jejaring aksi pemberantasan korupsi yang kuat bagi para pegiat antikorupsi di bidang pengadaan
+              publik
             </h2>
           </div>
-          <VRow class="my-10" align="stretch" justify="center">
+          <VRow class="my-6" align="stretch" justify="center">
             <VCol v-for="(step, idx) in steps" :key="idx" cols="12" md="4"
-              :class="['mb-6 mb-md-0', idx === steps.length - 1 ? '' : '']">
-              <VCard flat class="d-flex flex-column flex-lg-row align-center gap-3 gap-lg-4 h-100 pa-4">
+              :class="['mb-4 mb-md-0', idx === steps.length - 1 ? '' : '']">
+              <VCard flat class="d-flex flex-column flex-lg-row align-center gap-2 gap-lg-3 h-100 pa-3">
                 <div>
-                  <div class="bg-primary rounded-circle d-inline-flex align-center justify-center mb-3"
+                  <div class="bg-primary rounded-circle d-inline-flex align-center justify-center mb-2"
                     style="width:44px;height:44px;">
                     <h5 class="text-h6 text-white mb-0">{{ step.number }}</h5>
                   </div>
@@ -57,7 +60,7 @@ const guideImage = 'https://placehold.co/1363x500'
               </VCard>
             </VCol>
           </VRow>
-          <div class="d-flex justify-center mt-8">
+          <div class="d-flex justify-center mt-6">
             <VImg :src="guideImage" class="rounded-xl" alt="Mission illustration" max-width="100%" width="100%"
               height="auto" cover />
           </div>
@@ -69,7 +72,7 @@ const guideImage = 'https://placehold.co/1363x500'
 
 <style lang="scss" scoped>
 .payment-card {
-  margin-block: 10.5rem 5.25rem;
+  margin-block: 3rem 3rem;
 }
 
 .help-center-page {
@@ -79,7 +82,7 @@ const guideImage = 'https://placehold.co/1363x500'
   }
 
   .help-center-section {
-    padding-block: 5.25rem;
+    padding-block: 3rem;
   }
 }
 
@@ -94,12 +97,12 @@ const guideImage = 'https://placehold.co/1363x500'
 @media (max-width: 599px) {
   .help-center-page {
     .search-header {
-      padding-block: 7rem 2rem !important;
+      padding-block: 4rem 1.5rem !important;
       padding-inline: 2rem !important;
     }
 
     .help-center-section {
-      padding-block: 3.5rem;
+      padding-block: 2rem;
     }
   }
 }

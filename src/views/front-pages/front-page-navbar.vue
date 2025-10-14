@@ -29,11 +29,9 @@ const menuItems = [
 ]
 
 const navLinks = [
-  { label: 'Home', route: { path: '/' } },
+  { label: 'Beranda', route: { path: '/' } },
   { label: 'Artikel', route: { path: '/articles' } },
   { label: 'Produk', route: { name: 'products' } },
-  // { label: 'Informasi', route: { name: 'products', hash: '#informasi' } },
-  // { label: 'Profil', route: { name: 'products', hash: '#profil' } },
   { label: 'Kegiatan', route: { name: 'calendar' } },
   { label: 'Formulir', route: { path: '/forms' } },
 ]

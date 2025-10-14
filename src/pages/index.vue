@@ -5,8 +5,12 @@ import FeaturedArticles from '@/views/front-pages/community/landing-page/feature
 import HeroSection from '@/views/front-pages/community/landing-page/hero-section.vue'
 import MembersHighlightJoinUs from '@/views/front-pages/community/landing-page/members-highlight-join-us.vue'
 import MissionSection from '@/views/front-pages/community/landing-page/mission-section.vue'
+import SocialContactSection from '@/views/front-pages/community/landing-page/social-contact-section.vue'
+import TeamSection from '@/views/front-pages/community/landing-page/team-section.vue'
+import CommunityProfile from '@/views/front-pages/community/landing-page/community-profile.vue'
 import Footer from '@/views/front-pages/front-page-footer.vue'
 import Navbar from '@/views/front-pages/front-page-navbar.vue'
+import OurTeam from '@/views/front-pages/landing-page/our-team.vue'
 import { useConfigStore } from '@core/stores/config'
 
 const store = useConfigStore()
@@ -23,10 +27,13 @@ definePage({
   <div class="landing-page-wrapper">
     <Navbar />
     <HeroSection />
+    <CommunityProfile />
     <MissionSection />
     <FeaturedArticles />
-    <MembersHighlightJoinUs />
+    <OurTeam ref="refTeam" />
+    <TeamSection />
     <FaqSection />
+    <SocialContactSection />
     <ContactUs />
     <Footer />
   </div>

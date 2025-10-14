@@ -50,7 +50,7 @@ const scrollToHeading = (anchor) => {
     <!-- Table of Contents -->
     <VCard v-if="tableOfContents.length > 0">
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Table of Contents</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Daftar Isi</h4>
         <VList class="pa-0">
           <VListItem 
             v-for="item in tableOfContents" 
@@ -70,18 +70,18 @@ const scrollToHeading = (anchor) => {
     <!-- Article Stats -->
     <VCard>
       <VCardText class="pa-6">
-        <h4 class="text-h6 font-weight-medium mb-4">Article Stats</h4>
+        <h4 class="text-h6 font-weight-medium mb-4">Statistik Artikel</h4>
         <div class="d-flex flex-column ga-3">
           <div class="d-flex justify-space-between">
-            <span class="text-body-2">Views</span>
+            <span class="text-body-2">Tampilan</span>
             <span class="font-weight-medium">{{ article.views }}</span>
           </div>
           <div class="d-flex justify-space-between">
-            <span class="text-body-2">Likes</span>
+            <span class="text-body-2">Suka</span>
             <span class="font-weight-medium">{{ article.likes }}</span>
           </div>
           <div class="d-flex justify-space-between">
-            <span class="text-body-2">Shares</span>
+            <span class="text-body-2">Bagikan</span>
             <span class="font-weight-medium">{{ article.shares }}</span>
           </div>
         </div>

@@ -24,16 +24,16 @@ onMounted(fetchFaqs)
       <!-- 👉 Header  -->
       <div class="faq-section">
         <div class="headers d-flex justify-center flex-column align-center">
-          <div class="text-center mb-6">
-            <VChip color="primary" class="mb-3 text-dark font-weight-medium px-4 py-1 rounded-pill" size="small">
-              FAQ
+          <div class="text-center mb-4">
+            <VChip color="primary" class="mb-2 text-dark font-weight-medium px-4 py-1 rounded-pill" size="small">
+              Pertanyaan yang Sering Diajukan
             </VChip>
-            <h2 class="mb-4 text-h3 lg:text-h1 md:text-h2">
-              Jelajahi FAQ berikut untuk menemukan jawaban.
+            <h2 class="mb-3 text-h4 lg:text-h2 md:text-h3">
+              Jelajahi FAQ berikut untuk menemukan jawaban
             </h2>
           </div>
         </div>
-        <VExpansionPanels class="pt-16">
+        <VExpansionPanels class="pt-8">
           <VExpansionPanel v-for="faq in faqData" :key="faq.question">
             <VExpansionPanelTitle>
               {{ faq.question }}
@@ -50,12 +50,12 @@ onMounted(fetchFaqs)
 
 <style lang="scss" scoped>
 .faq-section {
-  margin-block: 5.25rem;
+  margin-block: 3rem;
 }
 
 @media (max-width: 600px) {
   .faq-section {
-    margin-block: 4rem;
+    margin-block: 2rem;
   }
 }
 
