@@ -4,9 +4,9 @@
     <VContainer>
       <!-- Page Header -->
       <div class="text-center mb-8">
-        <h1 class="text-h2 font-weight-bold mb-4">Community Forms</h1>
+        <h1 class="text-h2 font-weight-bold mb-4">Formulir Komunitas</h1>
         <p class="text-h6 text-medium-emphasis mb-6 mx-auto" style="max-width: 600px;">
-          Get involved in your community. Join events, volunteer, report issues, and make your voice heard through our various forms and initiatives.
+          Terlibatlah dalam komunitas Anda. Ikuti acara, menjadi relawan, laporkan masalah, dan suarakan pendapat Anda melalui berbagai formulir dan inisiatif kami.
         </p>
       </div>
 
@@ -16,32 +16,32 @@
       <!-- Loading State -->
       <div v-if="loading" class="text-center py-8">
         <VProgressCircular indeterminate color="primary" size="64" />
-        <div class="mt-4">Loading forms...</div>
+        <div class="mt-4">Memuat formulir...</div>
       </div>
 
       <VRow v-else>
         <!-- Main Column -->
         <VCol cols="12" md="8">
           <div class="d-flex justify-space-between align-center mb-6">
-            <h2 class="text-h4 font-weight-bold">Available Forms</h2>
+            <h2 class="text-h4 font-weight-bold">Formulir Tersedia</h2>
             <VChip color="primary" size="small">
-              {{ filteredForms.length }} form{{ filteredForms.length !== 1 ? 's' : '' }} available
+              {{ filteredForms.length }} formulir tersedia
             </VChip>
           </div>
 
           <!-- No Results -->
           <div v-if="filteredForms.length === 0 && !loading" class="text-center py-8">
             <VIcon icon="tabler-search-off" size="64" class="text-medium-emphasis mb-4" />
-            <h3 class="text-h5 font-weight-medium mb-2">No forms found</h3>
+            <h3 class="text-h5 font-weight-medium mb-2">Formulir tidak ditemukan</h3>
             <p class="text-body-1 text-medium-emphasis mb-4">
-              Try adjusting your search criteria or category filter
+              Coba sesuaikan kriteria pencarian atau filter kategori Anda
             </p>
             <VBtn 
               color="primary" 
               variant="tonal" 
               @click="() => { searchQuery = ''; filterCategory = '' }"
             >
-              Clear all filters
+              Hapus semua filter
             </VBtn>
           </div>
 
@@ -131,13 +131,13 @@ const fetchForms = async () => {
       id: form.id,
       title: form.title,
       description: form.description,
-      category: form.category || 'General',
+      category: form.category || 'Umum',
       url: form.link,
       image: form.image_url || `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000000000)}?w=400&h=200&fit=crop`,
       icon: form.icon || 'tabler-forms'
     }))
   } catch (err) {
-    errorMsg.value = 'Failed to load forms. Please try again later.'
+    errorMsg.value = 'Gagal memuat formulir. Silakan coba lagi nanti.'
     console.error('Unexpected error:', err)
   } finally {
     loading.value = false
@@ -152,7 +152,7 @@ definePage({
   meta: {
     layout: 'blank',
     public: true,
-    title: 'Community Forms - Get Involved',
+    title: 'Formulir Komunitas - Mari Terlibat',
   },
 })
 </script>

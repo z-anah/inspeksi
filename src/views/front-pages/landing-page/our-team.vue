@@ -28,7 +28,7 @@ onMounted(fetchTeam)
 </script>
 
 <template>
-  <div class="bg-surface">
+  <div class="">
     <VContainer id="team">
       <div class="our-team pa-">
         <div class="headers d-flex justify-center flex-column align-center">

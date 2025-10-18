@@ -31,7 +31,7 @@ const guideImage = intergritasFile
 
 <template>
   <div class="help-center-page">
-    <div class="help-center-section bg-surface">
+    <div class="help-center-section">
       <VContainer>
         <section class="bg-white py-6 md:py-10 lg:py-12">
           <div class="text-center mb-4">
