@@ -19,7 +19,7 @@ onMounted(fetchFaqs)
 </script>
 
 <template>
-  <div id="faq">
+  <div id="faq" class="bg-surface">
     <VContainer>
       <!-- 👉 Header  -->
       <div class="faq-section">
@@ -39,7 +39,9 @@ onMounted(fetchFaqs)
               {{ faq.question }}
             </VExpansionPanelTitle>
             <VExpansionPanelText>
-              {{ faq.answer }}
+              <div v-for="(line, idx) in faq.answer.split('\n')" :key="idx">
+                {{ line }}
+              </div>
             </VExpansionPanelText>
           </VExpansionPanel>
         </VExpansionPanels>

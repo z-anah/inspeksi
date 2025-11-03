@@ -59,7 +59,7 @@ const scrollToHeading = (anchor) => {
             :style="{ paddingLeft: `${16 + item.indent}px` }"
             @click="scrollToHeading(item.anchor)"
           >
-            <span :class="item.level === 1 ? 'font-weight-medium' : ''" class="text-primary">
+            <span :class="['text-high-emphasis', item.level === 1 ? 'font-weight-medium' : '']">
               {{ item.title }}
             </span>
           </VListItem>

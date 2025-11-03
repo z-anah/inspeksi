@@ -8,6 +8,7 @@ import avatar7 from '@images/avatars/avatar-7.png'
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import { VForm } from 'vuetify/components/VForm'
 import { useCalendarStore } from './useCalendarStore'
+import { useClipboard } from '@vueuse/core'
 
 // 👉 store
 const props = defineProps({
@@ -118,18 +119,30 @@ const dialogModelValueUpdate = val => {
 
 // 👉 Disable all form fields
 const isDisabled = computed(() => true)
+
+// Copy all event info to clipboard
+const { copy } = useClipboard()
+
+const copyAllInfo = () => {
+  const e = event.value
+  const info = `
+Title: ${e.title}
+Date: ${e.start}
+Location: ${e.extendedProps?.location || ''}
+Map URL: ${e.extendedProps?.map_url || ''}
+  `.trim()
+  copy(info)
+}
 </script>
 
 <template>
   <VNavigationDrawer data-allow-mismatch temporary location="end" :model-value="props.isDrawerOpen" width="370"
     :border="0" class="scrollable-content" @update:model-value="dialogModelValueUpdate">
     <!-- 👉 Header -->
-    <AppDrawerHeaderSection :title="event.id ? 'Update Event' : 'Add Event'"
+    <AppDrawerHeaderSection title="Detail Acara"
       @cancel="$emit('update:isDrawerOpen', false)">
       <template #beforeClose>
-        <IconBtn v-show="event.id" @click="removeEvent">
-          <VIcon size="18" icon="tabler-trash" />
-        </IconBtn>
+        <VBtn icon="tabler-copy" variant="text" @click="copyAllInfo" title="Salin Semua Info" />
       </template>
     </AppDrawerHeaderSection>
 
@@ -143,26 +156,26 @@ const isDisabled = computed(() => true)
             <VRow>
               <!-- 👉 Title -->
               <VCol cols="12">
-                <AppTextField id="event-title" v-model="event.title" label="Title" placeholder="Event title"
+                <AppTextField id="event-title" v-model="event.title" label="Judul" placeholder="Judul acara"
                   :rules="[requiredValidator]" :disabled="isDisabled" />
               </VCol>
 
               <!-- 👉 Event Date -->
               <VCol cols="12">
                 <AppDateTimePicker id="event-date" :key="JSON.stringify(startDateTimePickerConfig)"
-                  v-model="event.start" :rules="[requiredValidator]" label="Event Date" placeholder="Select Date"
+                  v-model="event.start" :rules="[requiredValidator]" label="Tanggal Acara" placeholder="Pilih Tanggal"
                   :config="startDateTimePickerConfig" :disabled="isDisabled" />
               </VCol>
 
               <!-- 👉 Location -->
               <VCol cols="12">
-                <AppTextField id="event-location" v-model="event.extendedProps.location" label="Location"
-                  placeholder="Event location" :disabled="isDisabled" />
+                <AppTextField id="event-location" v-model="event.extendedProps.location" label="Lokasi"
+                  placeholder="Lokasi acara" :disabled="isDisabled" />
               </VCol>
 
               <!-- 👉 Map URL -->
               <VCol cols="12">
-                <AppTextField id="event-map-url" v-model="event.extendedProps.map_url" label="Map URL"
+                <AppTextField id="event-map-url" v-model="event.extendedProps.map_url" label="URL Peta"
                   placeholder="https://maps.google.com/..." type="url" :disabled="isDisabled" />
               </VCol>
 

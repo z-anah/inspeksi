@@ -57,10 +57,10 @@ const proceedToCheckout = () => {
           <!-- Empty State -->
           <div v-if="cartStore.items.length === 0" class="text-center py-6">
             <VIcon icon="tabler-shopping-cart-off" size="32" class="text-medium-emphasis mb-2" />
-            <div class="text-body-1 font-weight-medium mb-1">Keranjang Anda kosong</div>
-            <div class="text-body-2 text-medium-emphasis mb-3">Tambahkan beberapa item untuk memulai</div>
+            <div class="text-body-1 font-weight-medium mb-1">Kosong</div>
+            <div class="text-body-2 text-medium-emphasis mb-3">Tambahkan item untuk memulai</div>
             <VBtn color="primary" variant="tonal" size="small" @click="closeBasket">
-              Lanjut Belanja
+              Ok
             </VBtn>
           </div>
 

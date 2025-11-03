@@ -2,14 +2,6 @@
   <Navbar />
   <div class="forms-container">
     <VContainer>
-      <!-- Page Header -->
-      <div class="text-center mb-8">
-        <h1 class="text-h2 font-weight-bold mb-4">Formulir Komunitas</h1>
-        <p class="text-h6 text-medium-emphasis mb-6 mx-auto" style="max-width: 600px;">
-          Terlibatlah dalam komunitas Anda. Ikuti acara, menjadi relawan, laporkan masalah, dan suarakan pendapat Anda melalui berbagai formulir dan inisiatif kami.
-        </p>
-      </div>
-
       <!-- Error Alert -->
       <VAlert v-if="errorMsg" type="error" class="mb-4">{{ errorMsg }}</VAlert>
       
@@ -20,10 +12,19 @@
       </div>
 
       <VRow v-else>
+        <!-- Sidebar -->
+        <VCol cols="12" lg="4">
+          <FormsHeaderCopy 
+            :categories="categories" 
+            v-model:search-query="searchQuery"
+            v-model:filter-category="filterCategory" 
+          />
+        </VCol>
+
         <!-- Main Column -->
         <VCol cols="12" md="8">
           <div class="d-flex justify-space-between align-center mb-6">
-            <h2 class="text-h4 font-weight-bold">Formulir Tersedia</h2>
+            <h2 class="text-h4 font-weight-bold">Formulir Komunitas</h2>
             <VChip color="primary" size="small">
               {{ filteredForms.length }} formulir tersedia
             </VChip>
@@ -48,15 +49,6 @@
           <div v-else class="d-flex flex-column ga-6">
             <ListGroupLayout :forms="filteredForms" />
           </div>
-        </VCol>
-
-        <!-- Sidebar -->
-        <VCol cols="12" lg="4">
-          <FormsHeaderCopy 
-            :categories="categories" 
-            v-model:search-query="searchQuery"
-            v-model:filter-category="filterCategory" 
-          />
         </VCol>
       </VRow>
     </VContainer>

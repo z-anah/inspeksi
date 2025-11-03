@@ -55,7 +55,7 @@ const jumpToDateFn = date => {
   margin-block: 8rem 3rem;
 
   .v-container {
-    max-width: 1400px !important;
+    max-width: 1000px !important;
   }
 }
 

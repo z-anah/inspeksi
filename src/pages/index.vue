@@ -29,7 +29,6 @@ definePage({
     <HeroSection />
     <CommunityProfile />
     <MissionSection />
-    <FeaturedArticles />
     <OurTeam ref="refTeam" />
     <TeamSection />
     <FaqSection />

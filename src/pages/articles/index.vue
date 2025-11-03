@@ -182,6 +182,13 @@ definePage({
   <div class="checkout-card">
     <VContainer class="py-8" style="max-width: 1400px;">
       <VRow>
+        <!-- Sidebar -->
+        <VCol cols="12" lg="4">
+          <ArticlesSidebar :recent-articles="recentArticles" :categories="categories" :events="events"
+            :spotlight="spotlight" :testimonials="testimonials" :partners="partners" :faqs="faqs"
+            v-model:search-query="searchQuery" />
+        </VCol>
+        
         <!-- Main Column -->
         <VCol cols="12" lg="8">
           <h1 class="text-h3 font-weight-bold mb-6">Artikel Inspeksi</h1>
@@ -206,13 +213,6 @@ definePage({
             <CategoryTabbedLayout2 :articles="filteredArticles" :categories="filteredCategories"
               :search-active="!!searchQuery.trim()" :search-loading="searchLoading" />
           </div>
-        </VCol>
-
-        <!-- Sidebar -->
-        <VCol cols="12" lg="4">
-          <ArticlesSidebar :recent-articles="recentArticles" :categories="categories" :events="events"
-            :spotlight="spotlight" :testimonials="testimonials" :partners="partners" :faqs="faqs"
-            v-model:search-query="searchQuery" />
         </VCol>
       </VRow>
     </VContainer>

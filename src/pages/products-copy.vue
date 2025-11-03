@@ -20,7 +20,7 @@ const loading = ref(false)
 const categories = ref([])
 
 const filters = ref({
-  priceRange: [0, 1000000],
+  priceRange: [0, 200000],
   categories: [],
   inStock: false,
   featured: false,
@@ -191,7 +191,7 @@ definePage({
               <VBtn 
                 color="primary" 
                 variant="tonal" 
-                @click="() => { searchQuery = ''; filters.priceRange = [0, 1000000]; filters.minRating = 0 }"
+                @click="() => { searchQuery = ''; filters.priceRange = [0, 200000]; filters.minRating = 0 }"
               >
                 Clear all filters
               </VBtn>

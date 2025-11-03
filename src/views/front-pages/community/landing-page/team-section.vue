@@ -15,7 +15,6 @@ const departments = [
       'Diat Setiawan'
     ],
     icon: 'tabler-school',
-    color: 'primary'
   },
   {
     name: 'Bidang Kajian dan Literasi',
@@ -25,7 +24,6 @@ const departments = [
       'Mirhan Triandi Doe'
     ],
     icon: 'tabler-book-2',
-    color: 'success'
   },
   {
     name: 'Bidang Pembinaan dan Konseling',
@@ -35,7 +33,6 @@ const departments = [
       'Siti Fitriyati'
     ],
     icon: 'tabler-users',
-    color: 'info'
   },
   {
     name: 'Bidang Organisasi dan Kerjasama',
@@ -45,7 +42,6 @@ const departments = [
       'Igor Tamsil'
     ],
     icon: 'tabler-building-community',
-    color: 'warning'
   },
   {
     name: 'Bidang Humas dan Kampanye Antikorupsi',
@@ -57,13 +53,12 @@ const departments = [
       'M. Fauzi'
     ],
     icon: 'tabler-speakerphone',
-    color: 'error'
   }
 ]
 </script>
 
 <template>
-  <div class="bg-surface">
+  <div class="">
     <VContainer>
       <div class="d-flex justify-center align-center payment-card">
         <VRow class="w-100" align="stretch" justify="center">
@@ -83,7 +78,7 @@ const departments = [
             <VCard flat border class="h-100 pa-4">
               <div class="d-flex align-center mb-3">
                 <VAvatar 
-                  :color="dept.color" 
+                  color="info" 
                   variant="tonal" 
                   size="40" 
                   class="me-3"

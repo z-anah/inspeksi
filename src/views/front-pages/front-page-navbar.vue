@@ -31,7 +31,14 @@ const menuItems = [
 const navLinks = [
   { label: 'Beranda', route: { path: '/' } },
   { label: 'Artikel', route: { path: '/articles' } },
-  { label: 'Produk', route: { name: 'products' } },
+  {
+    label: 'Kampanye',
+    children: [
+      { label: 'Merchandise', route: { name: 'campaign-products' } },
+      { label: 'Musik', route: { name: 'campaign-music' } },
+      { label: 'Film', route: { name: 'campaign-film' } },
+    ],
+  },
   { label: 'Kegiatan', route: { name: 'calendar' } },
   { label: 'Formulir', route: { path: '/forms' } },
 ]
@@ -91,11 +98,29 @@ const isPageActive = computed(() => menuItems.some(item => item.navItems.some(li
           <!-- <RouterLink to="/" target="_blank" class="font-weight-medium nav-link">
             Admin
           </RouterLink> -->
-          <RouterLink v-for="(item, index) in navLinks" :key="index" :to="item.route"
+          <RouterLink
+            v-for="(item, index) in navLinks"
+            :key="index"
+            :to="item.route"
             class="nav-link font-weight-medium py-2 px-2 px-lg-4"
-            :class="[props.activeId?.toLocaleLowerCase().replace('-', ' ') === item.label.toLocaleLowerCase() ? 'active-link' : '']">
+            :class="[props.activeId?.toLocaleLowerCase().replace('-', ' ') === item.label.toLocaleLowerCase() ? 'active-link' : '']"
+          >
             {{ item.label }}
           </RouterLink>
+          <!-- Submenu rendering for mobile drawer -->
+          <template v-for="(item, index) in navLinks">
+            <div v-if="item.children" :key="`submenu-mobile-${index}`" class="ps-4">
+              <RouterLink
+                v-for="(child, cIdx) in item.children"
+                :key="cIdx"
+                :to="child.route"
+                class="nav-link font-weight-medium py-2 px-2 px-lg-4"
+                style="font-size: 0.95em;"
+              >
+                {{ child.label }}
+              </RouterLink>
+            </div>
+          </template>
         </div>
       </div>
 
@@ -127,24 +152,52 @@ const isPageActive = computed(() => menuItems.some(item => item.navItems.some(li
 
           <!-- landing page sections -->
           <div class="text-base align-center d-none d-md-flex">
-            <!-- <RouterLink
-              v-for="(item, index) in ['Home', 'Features', 'Team', 'FAQ', 'Contact us']"
-              :key="index"
-              :to="{ name: 'front-pages-landing-page', hash: `#${item.toLowerCase().replace(' ', '-')}` }"
-              class="nav-link font-weight-medium py-2 px-2 px-lg-4"
-              :class="[props.activeId?.toLocaleLowerCase().replace('-', ' ') === item.toLocaleLowerCase() ? 'active-link' : '']"
-            >
-              {{ item }}
-            </RouterLink> -->
-
-            <!-- <RouterLink to="/" target="_blank" class="nav-link font-weight-medium py-2 px-2 px-lg-4">
-              Admin
-            </RouterLink> -->
-            <RouterLink v-for="(item, index) in navLinks" :to="item.route" :key="index"
-              class="nav-link font-weight-medium py-2 px-2 px-lg-4"
-              :class="[props.activeId?.toLocaleLowerCase().replace('-', ' ') === item.label.toLocaleLowerCase() ? 'active-link' : '']">
-              {{ item.label }}
-            </RouterLink>
+            <template v-for="(item, index) in navLinks">
+              <template v-if="item.children">
+                <v-menu
+                  :close-on-content-click="false"
+                  open-on-hover
+                  offset-y
+                  transition="slide-y-transition"
+                  :key="index"
+                  class="nav-link-menu"
+                >
+                  <template #activator="{ props: menuProps }">
+                    <span
+                      v-bind="menuProps"
+                      class="nav-link font-weight-medium py-2 px-2 px-lg-4"
+                      :class="[props.activeId?.toLocaleLowerCase().replace('-', ' ') === item.label.toLocaleLowerCase() ? 'active-link' : '']"
+                      style="cursor: pointer;"
+                    >
+                      {{ item.label }}
+                      <VIcon icon="tabler-chevron-down" size="16" class="ms-1" />
+                    </span>
+                  </template>
+                  <v-list>
+                    <v-list-item
+                      v-for="(child, cIdx) in item.children"
+                      :key="cIdx"
+                      :to="child.route"
+                      class="nav-link font-weight-medium"
+                      style="font-size: 0.95em;"
+                      @click="$router.push(child.route)"
+                    >
+                      {{ child.label }}
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </template>
+              <template v-else>
+                <RouterLink
+                  :to="item.route"
+                  :key="index"
+                  class="nav-link font-weight-medium py-2 px-2 px-lg-4"
+                  :class="[props.activeId?.toLocaleLowerCase().replace('-', ' ') === item.label.toLocaleLowerCase() ? 'active-link' : '']"
+                >
+                  {{ item.label }}
+                </RouterLink>
+              </template>
+            </template>
           </div>
         </div>
 

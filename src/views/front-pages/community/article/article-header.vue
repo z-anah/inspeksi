@@ -12,8 +12,7 @@ defineProps({
     <!-- Breadcrumbs -->
     <VBreadcrumbs :items="[
       { title: 'Beranda', to: '/' },
-      { title: 'Artikel', to: '/articles' },
-      { title: article.title, disabled: true }
+      { title: 'Artikel', to: '/articles',disabled: false  },
     ]" class="pa-0 mb-4" />
 
     <!-- Article Header -->
@@ -43,7 +42,7 @@ defineProps({
           </div>
           <div class="d-flex align-center ga-1">
             <VIcon icon="tabler-eye" size="16" />
-            {{ article.views }} tampilan
+            {{ article.views }}
           </div>
         </div>
       </div>

@@ -5,32 +5,27 @@ import { themeConfig } from '@themeConfig'
 
 // SECTION Store
 export const useConfigStore = defineStore('config', () => {
-  // 👉 Theme
-  const userPreferredColorScheme = usePreferredColorScheme()
-  const cookieColorScheme = cookieRef('color-scheme', 'light')
+  // Force theme and skin to light
+  const theme = cookieRef('theme', 'light')
+  const skin = cookieRef('skin', 'default') // or 'bordered' depending on your setup
 
-  watch(userPreferredColorScheme, val => {
-    if (val !== 'no-preference')
-      cookieColorScheme.value = val
-  }, { immediate: true })
+  const isVerticalNavSemiDark = cookieRef('isVerticalNavSemiDark', false)
 
-  const theme = cookieRef('theme', themeConfig.app.theme)
-
-  // 👉 isVerticalNavSemiDark
-  const isVerticalNavSemiDark = cookieRef('isVerticalNavSemiDark', themeConfig.verticalNav.isVerticalNavSemiDark)
-
-  // 👉 isVerticalNavSemiDark
-  const skin = cookieRef('skin', themeConfig.app.skin)
-
-  // ℹ️ We need to use `storeToRefs` to forward the state
-  const { isLessThanOverlayNavBreakpoint, appContentWidth, navbarType, isNavbarBlurEnabled, appContentLayoutNav, isVerticalNavCollapsed, footerType, isAppRTL } = storeToRefs(useLayoutConfigStore())
+  const { 
+    isLessThanOverlayNavBreakpoint, 
+    appContentWidth, 
+    navbarType, 
+    isNavbarBlurEnabled, 
+    appContentLayoutNav, 
+    isVerticalNavCollapsed, 
+    footerType, 
+    isAppRTL 
+  } = storeToRefs(useLayoutConfigStore())
   
   return {
     theme,
-    isVerticalNavSemiDark,
     skin,
-
-    // @layouts exports
+    isVerticalNavSemiDark,
     isLessThanOverlayNavBreakpoint,
     appContentWidth,
     navbarType,
@@ -42,22 +37,19 @@ export const useConfigStore = defineStore('config', () => {
   }
 })
 // !SECTION
+
 // SECTION Init
 export const initConfigStore = () => {
-  const userPreferredColorScheme = usePreferredColorScheme()
   const vuetifyTheme = useTheme()
   const configStore = useConfigStore()
 
-  watch([() => configStore.theme, userPreferredColorScheme], () => {
-    vuetifyTheme.global.name.value = configStore.theme === 'system'
-      ? userPreferredColorScheme.value === 'dark'
-        ? 'dark'
-        : 'light'
-      : configStore.theme
-  })
-  onMounted(() => {
-    if (configStore.theme === 'system')
-      vuetifyTheme.global.name.value = userPreferredColorScheme.value
+  // Always force Vuetify theme to light
+  vuetifyTheme.global.name.value = 'light'
+
+  watchEffect(() => {
+    configStore.theme = 'light'
+    document.documentElement.classList.remove('dark', 'dark-layout')
+    document.documentElement.style.colorScheme = 'light'
   })
 }
 // !SECTION

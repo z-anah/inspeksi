@@ -85,7 +85,7 @@ const handleShare = async (platform) => {
             <!-- views -->
             <div class="d-flex align-center ga-2">
               <VBtn icon="tabler-eye" variant="outlined" size="small" />
-              <span class="text-body-2">{{ article.views.toLocaleString() }} tampilan</span>
+              <span class="text-body-2">{{ article.views.toLocaleString() }}</span>
             </div>
 
             <div class="d-flex align-center ga-2">
@@ -97,12 +97,12 @@ const handleShare = async (platform) => {
                 @click="handleLike"
                 color="error"
               />
-              <span class="text-body-2">{{ article.likes.toLocaleString() }} suka</span>
+              <span class="text-body-2">{{ article.likes.toLocaleString() }}</span>
             </div>
 
             <div class="d-flex align-center ga-2">
               <VBtn icon="tabler-share" variant="outlined" size="small" />
-              <span class="text-body-2">{{ article.shares.toLocaleString() }} bagikan</span>
+              <span class="text-body-2">{{ article.shares.toLocaleString() }}</span>
             </div>
           </div>
 

@@ -28,9 +28,9 @@ onMounted(fetchTeam)
 </script>
 
 <template>
-  <div class="">
+  <div class="bg-surface">
     <VContainer id="team">
-      <div class="our-team pa-">
+      <div class="our-team">
         <div class="headers d-flex justify-center flex-column align-center">
           <VChip label color="primary" class="mb-4" size="small">
             Tim Hebat Kami
@@ -50,22 +50,27 @@ onMounted(fetchTeam)
           </p>
         </div>
 
-        <VRow>
-          <VCol v-for="(data, index) in teamData" :key="index" cols="12" lg="3" sm="6">
-            <VCard flat min-width="267" class="position-relative overflow-visible team-card mb-lg-0 mb-12 mt-4">
-              <div
-                :style="{ maxHeight: '185px', minHeight: '185px', borderRadius: '90px 20px 0 0', backgroundColor: data.backgroundColor, border: `1px solid ${data.borderColor}`, borderBottom: 'none' }">
-                <VImg :src="data.image_url" height="240" class="team-image" />
+        <VRow dense>
+          <VCol
+            v-for="(data, index) in teamData"
+            :key="index"
+            cols="6"
+            sm="4"
+            md="3"
+            lg="2"
+            class="d-flex justify-center"
+          >
+            <VCard flat class="team-card-simple d-flex flex-column align-center pa-2">
+              <VAvatar
+                :image="data.image_url"
+                size="72"
+                class="mb-2 team-avatar"
+                :style="{ border: `1px solid ${data.borderColor}`, backgroundColor: data.backgroundColor }"
+              />
+              <div class="text-center">
+                <h6 class="text-h6 mb-1">{{ data.name }}</h6>
+                <p class="text-caption text-disabled mb-0">{{ data.position }}</p>
               </div>
-              <VCardText class="text-center pa-4"
-                :style="{ border: `1px solid ${data.borderColor}`, borderBlockStart: 'none', borderRadius: '0 0 6px 6px', boxSizing: 'border-box' }">
-                <h5 class="text-h5">
-                  {{ data.name }}
-                </h5>
-                <p class="text-body-1 text-disabled mb-0">
-                  {{ data.position }}
-                </p>
-              </VCardText>
             </VCard>
           </VCol>
         </VRow>
@@ -75,34 +80,32 @@ onMounted(fetchTeam)
 </template>
 
 <style lang="scss" scoped>
-.team-image {
-  position: absolute;
-  inset-block-start: -3.4rem;
-  inset-inline: 0;
-}
-
-.headers {
-  margin-block-end: 7.4375rem;
+.team-avatar {
+  // Smaller avatar, border and background handled inline
 }
 
 .our-team {
-  margin-block: 5.25rem;
+  margin-block: 2rem;
 }
 
-@media (max-width: 1264px) {
-  .our-team {
-    margin-block-end: 1rem;
-  }
+.headers {
+  margin-block-end: 2.5rem;
 }
 
-.team-card {
-  border-radius: 90px 20px 6px 6px;
+.team-card-simple {
+  box-shadow: none;
+  border-radius: 12px;
+  min-width: 0;
+  width: 100%;
+  max-width: 140px;
+  margin: 0 auto 1.5rem auto;
+  background: transparent;
 }
 
 .section-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
-  line-height: 36px;
+  line-height: 28px;
 }
 
 .section-title::after {
@@ -117,7 +120,5 @@ onMounted(fetchTeam)
   inset-inline-start: -12%;
 }
 
-.team-card:hover .bw-img {
-  filter: grayscale(0);
-}
+/* Remove old styles for .team-image, .team-card, etc. */
 </style>

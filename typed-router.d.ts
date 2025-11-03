@@ -23,10 +23,12 @@ declare module 'vue-router/auto-routes' {
     'articles': RouteRecordInfo<'articles', '/articles', Record<never, never>, Record<never, never>>,
     'articles-id': RouteRecordInfo<'articles-id', '/articles/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     'calendar': RouteRecordInfo<'calendar', '/calendar', Record<never, never>, Record<never, never>>,
+    'campaign-film': RouteRecordInfo<'campaign-film', '/campaign/film', Record<never, never>, Record<never, never>>,
+    'campaign-music': RouteRecordInfo<'campaign-music', '/campaign/music', Record<never, never>, Record<never, never>>,
+    'campaign-products': RouteRecordInfo<'campaign-products', '/campaign/products', Record<never, never>, Record<never, never>>,
     'forms': RouteRecordInfo<'forms', '/forms', Record<never, never>, Record<never, never>>,
     'indexx': RouteRecordInfo<'indexx', '/indexx', Record<never, never>, Record<never, never>>,
     'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
-    'products': RouteRecordInfo<'products', '/products', Record<never, never>, Record<never, never>>,
     'products-copy': RouteRecordInfo<'products-copy', '/products-copy', Record<never, never>, Record<never, never>>,
   }
 }

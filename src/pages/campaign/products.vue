@@ -20,11 +20,10 @@ const loading = ref(false)
 const categories = ref([])
 
 const filters = ref({
-  priceRange: [0, 1000000],
+  priceRange: [0, 200000],
   categories: [],
   inStock: false,
   featured: false,
-  minRating: 0
 })
 
 const searchQuery = ref("")
@@ -47,13 +46,6 @@ const filteredProducts = computed(() => {
     product.price >= filters.value.priceRange[0] && 
     product.price <= filters.value.priceRange[1]
   )
-
-  // Rating filter
-  if (filters.value.minRating > 0) {
-    filtered = filtered.filter(product => 
-      product.rating >= filters.value.minRating
-    )
-  }
 
   // In stock filter
   if (filters.value.inStock) {
@@ -163,6 +155,15 @@ definePage({
         </div>
         
         <VRow v-else>
+          <!-- Sidebar -->
+          <VCol cols="12" lg="4">
+            <ProductsSidebarCopy 
+              :categories="categories" 
+              :filters="filters" 
+              v-model:search-query="searchQuery"
+              @update:filters="updateFilters"
+            />
+          </VCol>
           <!-- Main Column -->
           <VCol cols="12" lg="8">
             <div class="d-flex justify-space-between align-center mb-6">
@@ -182,7 +183,7 @@ definePage({
               <VBtn 
                 color="primary" 
                 variant="tonal" 
-                @click="() => { searchQuery = ''; filters.priceRange = [0, 1000000]; filters.minRating = 0 }"
+                @click="() => { searchQuery = ''; filters.priceRange = [0, 200000]; }"
               >
                 Hapus semua filter
               </VBtn>
@@ -195,16 +196,6 @@ definePage({
                 :cart="cartStore.items"
               />
             </div>
-          </VCol>
-
-          <!-- Sidebar -->
-          <VCol cols="12" lg="4">
-            <ProductsSidebarCopy 
-              :categories="categories" 
-              :filters="filters" 
-              v-model:search-query="searchQuery"
-              @update:filters="updateFilters"
-            />
           </VCol>
         </VRow>
       </VContainer>

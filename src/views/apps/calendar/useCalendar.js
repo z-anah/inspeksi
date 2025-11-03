@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import timeGridPlugin from '@fullcalendar/timegrid'
+import idLocale from '@fullcalendar/core/locales/id'
 
 const date = new Date()
 const nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
@@ -316,12 +317,23 @@ export const useCalendar = (event, isEventHandlerSidebarActive, isLeftSidebarOpe
   // 👉 Calendar options
   const calendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin],
+    idLocale,
     initialView: 'dayGridMonth',
     headerToolbar: {
-      start: 'drawerToggler,prev,next title',
-      end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     events: fetchEvents,
+    buttonText: {
+      today: 'Hari Ini',
+      month: 'Bulan',
+      week: 'Minggu',
+      day: 'Hari',
+      list: 'Daftar'
+    },
+    dayHeaderFormat: { weekday: 'short' },
+    days: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
 
     // ❗ We need this to be true because when its false and event is allDay event and end date is same as start data then Full calendar will set end to null
     forceEventDuration: true,
@@ -330,7 +342,7 @@ export const useCalendar = (event, isEventHandlerSidebarActive, isLeftSidebarOpe
         Enable dragging and resizing event
         Docs: https://fullcalendar.io/docs/editable
       */
-    editable: true,
+    editable: false,
 
     /*
         Enable resizing event from start

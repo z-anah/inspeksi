@@ -33,7 +33,7 @@ onMounted(fetchWhatsAppNumber)
 </script>
 
 <template>
-  <div>
+  <div class="bg-surface">
   <VContainer id="contact-us">
     <!-- 👉 Headers  -->
     <div class="contact-us-section">
@@ -49,29 +49,19 @@ onMounted(fetchWhatsAppNumber)
       </div>
       <div class="mb-8">
         <VCard>
-          <VCardItem class="pb-0">
-            <h4 class="text-h5 mb-1">
-              Kirim pesan
-            </h4>
-          </VCardItem>
-
           <VCardText>
-            <p class="mb-4">
-              Jika Anda ingin mendiskusikan sesuatu yang terkait dengan program, akun, kemitraan, atau
-              memiliki pertanyaan umum, Anda berada di tempat yang tepat.
-            </p>
             <VForm @submit.prevent="sendToWhatsApp">
               <VRow>
                 <VCol cols="12" md="6">
-                  <AppTextField v-model="name" placeholder="John Doe" label="Nama Lengkap" />
+                  <AppTextField v-model="name" placeholder="Prabowo" label="Nama Lengkap" />
                 </VCol>
 
                 <VCol cols="12" md="6">
-                  <AppTextField v-model="email" placeholder="johndoe@gmail.com" label="Alamat Email" />
+                  <AppTextField v-model="email" placeholder="prabowo@gmail.com" label="Alamat Email" />
                 </VCol>
 
                 <VCol cols="12">
-                  <AppTextarea v-model="message" placeholder="Tulis pesan Anda" rows="3" label="Pesan" />
+                  <AppTextarea v-model="message" placeholder="Tulis pesan Anda..." rows="3" label="Pesan" />
                 </VCol>
 
                 <VCol>

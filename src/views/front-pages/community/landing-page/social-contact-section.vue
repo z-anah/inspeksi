@@ -49,7 +49,7 @@ const openSocialLink = (url) => {
 </script>
 
 <template>
-  <div class="bg-surface">
+  <div class="">
     <VContainer>
       <div class="d-flex justify-center align-center payment-card">
         <VRow class="w-100" align="center" justify="center">
@@ -78,7 +78,7 @@ const openSocialLink = (url) => {
                   <VIcon 
                     :icon="social.icon" 
                     size="40" 
-                    :color="social.color" 
+                    color="info" 
                     class="mb-2"
                   />
                   <h6 class="text-subtitle-1 mb-1">{{ social.platform }}</h6>
