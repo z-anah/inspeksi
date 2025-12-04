@@ -10,8 +10,6 @@ defineProps({
 <template>
   <VCard>
     <VCardText class="pa-6">
-      <h2 class="text-h6 font-weight-medium mb-4">List group</h2>
-
       <VList class="pa-0">
         <VListItem v-for="(form, index) in forms" :key="'list-' + form.id" class="pa-0 mb-2">
           <VListItemTitle>

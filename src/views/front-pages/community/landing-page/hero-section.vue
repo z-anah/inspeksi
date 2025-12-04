@@ -50,46 +50,48 @@ const props = defineProps({
 </script>
 
 <template>
-  <section class="hero-section-bg">
-    <VContainer>
-      <div class="d-flex justify-center align-center payment-card">
-        <VRow align="center" justify="center" class="g-10 g-lg-20">
-          <VCol cols="12" lg="6" class="mb-8 mb-lg-0">
-            <div>
-              <VChip :label="false" color="primary" class="mb-4 text-dark font-weight-medium px-4 py-2 rounded-xl">
-                {{ tagline }}
-              </VChip>
-              <h1 class="mb-3 text-dark font-weight-bold display-2">
-                {{ title }}
-              </h1>
-              <p class="mb-6 mt-2 text-medium-emphasis text-body-1">
-                {{ description }}
-              </p>
-              <VBtn color="primary" class="text-white font-weight-medium rounded-xl px-6 py-3 mb-6" :href="buttonLink"
-                size="large" variant="flat">
-                {{ buttonLabel }}
-              </VBtn>
-              <VRow class="mt-8" align="center" no-gutters>
-                <VCol v-for="(highlight, idx) in highlights" :key="idx" cols="12" md="auto"
-                  class="d-flex align-center mb-2 mb-md-0 me-md-8">
-                  <span class="text-h6 me-2">{{ highlight.icon }}</span>
-                  <span class="text-body-1 text-dark">{{ highlight.text }}</span>
-                </VCol>
-              </VRow>
-            </div>
-          </VCol>
-          <VCol cols="12" lg="6">
-            <div class="position-relative d-flex justify-center">
-              <VImg :src="image" alt="Community against corruption" class="rounded-xl" width="100%" height="auto"
-                cover />
-              <VImg :src="overlayImage" alt="Unity icon" class="position-absolute d-none d-md-block"
-                style="right: -60px; bottom: -100px; width:300px; height:300px;" />
-            </div>
-          </VCol>
-        </VRow>
-      </div>
-    </VContainer>
-  </section>
+  <div class="bg-surface">
+    <section class="hero-section-bg">
+      <VContainer>
+        <div class="d-flex justify-center align-center payment-card">
+          <VRow align="center" justify="center" class="g-10 g-lg-20">
+            <VCol cols="12" lg="6" class="mb-8 mb-lg-0">
+              <div>
+                <VChip :label="false" color="primary" class="mb-4 text-dark font-weight-medium px-4 py-2 rounded-xl">
+                  {{ tagline }}
+                </VChip>
+                <h1 class="mb-3 text-dark font-weight-bold display-2">
+                  {{ title }}
+                </h1>
+                <p class="mb-6 mt-2 text-medium-emphasis text-body-1">
+                  {{ description }}
+                </p>
+                <VBtn color="primary" class="text-white font-weight-medium rounded-xl px-6 py-3 mb-6" :href="buttonLink"
+                  size="large" variant="flat">
+                  {{ buttonLabel }}
+                </VBtn>
+                <VRow class="mt-8" align="center" no-gutters>
+                  <VCol v-for="(highlight, idx) in highlights" :key="idx" cols="12" md="auto"
+                    class="d-flex align-center mb-2 mb-md-0 me-md-8">
+                    <span class="text-h6 me-2">{{ highlight.icon }}</span>
+                    <span class="text-body-1 text-dark">{{ highlight.text }}</span>
+                  </VCol>
+                </VRow>
+              </div>
+            </VCol>
+            <VCol cols="12" lg="6">
+              <div class="position-relative d-flex justify-center">
+                <VImg :src="image" alt="Community against corruption" class="rounded-xl" width="100%" height="auto"
+                  cover />
+                <VImg :src="overlayImage" alt="Unity icon" class="position-absolute d-none d-md-block"
+                  style="right: -10px; bottom: -100px; width:200px; height:300px;" />
+              </div>
+            </VCol>
+          </VRow>
+        </div>
+      </VContainer>
+    </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -104,7 +106,7 @@ const props = defineProps({
   }
 
   @media (max-width: 767px) {
-    padding-block: 3rem 0;
+    padding-block: 5rem 0;
   }
 }
 

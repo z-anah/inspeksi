@@ -4,10 +4,10 @@ import Navbar from '@/views/front-pages/front-page-navbar.vue'
 import Footer from '@/views/front-pages/front-page-footer.vue'
 
 const musicList = [
-  { title: "Musik Integritas dan Antikorupsi", url: "https://youtu.be/kDsrZM0WJBY" },
   { title: "Fiktif", url: "https://youtu.be/DL4JTEbeYVo" },
+  { title: "Timpang", url: "https://youtu.be/DL4JTEbeYVo?si=sELj0sVG-x6SdJUC" },
   { title: "Bahagia Dari Kardus", url: "https://youtu.be/hzK82TRjw38" },
-  { title: "Tak Akan Punah", url: null },
+  { title: "Tak Akan Punah", url: "https://youtu.be/BRNRN9_ICGE?si=pucJJIMqppLtMD3q" },
   { title: "Analogi Hujan", url: "https://youtu.be/WpLrAmu1GXw" },
   { title: "1 Centi", url: "https://youtu.be/C4_eeUu9ZOo" }
 ]

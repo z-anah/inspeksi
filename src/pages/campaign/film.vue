@@ -6,10 +6,9 @@ import Footer from '@/views/front-pages/front-page-footer.vue'
 // Film data (static)
 const filmCategories = [
   {
-    title: "Film Antikorupsi",
+    title: "Kita Vs Korupsi",
     gradient: "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)",
     films: [
-      { title: "Kita Vs Korupsi", url: "" },
       { title: "Selamat Siang Risa", url: "https://youtu.be/8IUaqtmgc2E?si=VNO373M6lD3A2LeQ" },
       { title: "Aku Padamu", url: "https://youtu.be/hMzpz3hWKRU?si=9FaPgR0fGOaHNu3x" },
       { title: "Rumah Perkara", url: "https://youtu.be/7FlZ2p-oyRY?si=NjNvb267EUDXYgQ5" },
@@ -82,7 +81,7 @@ definePage({
           placeholder="Cari judul film..."
           variant="solo"
           hide-details
-          style="max-width: 300px"
+          style="max-width: 500px; min-width: 400px; padding: 5px;"
         />
       </div>
 
