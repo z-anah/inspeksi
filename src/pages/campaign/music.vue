@@ -4,7 +4,7 @@ import Navbar from '@/views/front-pages/front-page-navbar.vue'
 import Footer from '@/views/front-pages/front-page-footer.vue'
 
 const musicList = [
-  { title: "Fiktif", url: "https://youtu.be/DL4JTEbeYVo" },
+  { title: "Fiktif", url: "https://youtu.be/kDsrZM0WJBY?si=4Ga21H7y-FAm1gKj" },
   { title: "Timpang", url: "https://youtu.be/DL4JTEbeYVo?si=sELj0sVG-x6SdJUC" },
   { title: "Bahagia Dari Kardus", url: "https://youtu.be/hzK82TRjw38" },
   { title: "Tak Akan Punah", url: "https://youtu.be/BRNRN9_ICGE?si=pucJJIMqppLtMD3q" },
